@@ -3,9 +3,9 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Logo from "../svg_Icon/Logo";
 import Nav from "./NavLink";
-import { handleScrollClick } from "../../utils/scrollUtils";
+import Logo from "../svg_Icon/Logo";
+import { handleScrollClick, handleNavClick } from "../../utils/scrollUtils";
 import { useNavigation } from "../../utils/context/NavigationContext";
 
 interface MenuItem {
@@ -21,9 +21,12 @@ interface MenuItem {
     }[];
 }
 
-const Header: React.FC = () => {
+const Header = () => {
     const pathname = usePathname();
     const { currentRoute, updateRoute } = useNavigation();
+    const handleNavigationClick = (path: string) => {
+        handleNavClick(path, currentRoute, updateRoute, handleScrollClick);
+    };
 
     const menuItems: MenuItem[] = [
         {
@@ -92,49 +95,21 @@ const Header: React.FC = () => {
             path: "/page-tarifs",
             subItems: [],
         },
-        // {
-        //     id: "menu-contact",
-        //     title: "Contact",
-        //     class: "",
-        //     path: "/#contact",
-        //     subItems: [],
-        // },
+        {
+            id: "menu-contact",
+            title: "Contact",
+            class: "",
+            path: "/#contact",
+            subItems: [],
+        },
     ];
-
-    const updateMenuClasses = (items: MenuItem[]): MenuItem[] => {
-        return items.map((item) => {
-            // Vérifiez si l'élément correspond à la route actuelle ou à une ancre sur la route actuelle
-            const isActive =
-                item.path === "/"
-                    ? currentRoute === "/" || currentRoute.startsWith("/#")
-                    : currentRoute.startsWith(item.path);
-
-            // Vérifiez si un sous-élément est actif
-            const activeSubItem = item.subItems.find((sub) =>
-                currentRoute.endsWith(sub.AnchorId)
-            );
-
-            return {
-                ...item,
-                class: isActive ? " active" : "",
-                subItems: item.subItems.map((sub) => ({
-                    ...sub,
-                    class: activeSubItem?.id === sub.id ? " active" : "",
-                })),
-            };
-        });
-    };
-
-    const updatedMenuItems = updateMenuClasses(menuItems);
 
     useEffect(() => {
         if (window.location.hash) {
             window.scrollTo({ top: 0 });
             handleScrollClick(window.location.hash.substring(1));
         }
-        console.log("Current Route:", currentRoute);
     }, [pathname]);
-
     return (
         <header className="header">
             <Link
@@ -144,8 +119,8 @@ const Header: React.FC = () => {
                 <Logo />
             </Link>
             <Nav
-                menuItems={updatedMenuItems}
-                onNavigationClick={(path: string) => updateRoute(path)}
+                menuItems={menuItems}
+                onNavigationClick={handleNavigationClick}
             />
         </header>
     );
