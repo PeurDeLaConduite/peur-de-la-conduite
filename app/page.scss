@@ -1,0 +1,35 @@
+.section {
+    width: 100%;
+    height: 100vh;
+    .fixed-menu {
+        height: calc(60px + 2rem);
+        width: 100vw;
+    }
+    h2 {
+        height: 90px;
+        width: 100%;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        // font-size: 1.5rem;
+        // font-weight: 600;
+        background: #fff;
+        background: green;
+        margin: 0;
+    }
+    .s1,
+    .s2,
+    .s3 {
+        padding: 2rem;
+        background: red;
+        height: calc(100vh - 90px);
+    }
+    .s2 {
+        background: green;
+    }
+    .s3 {
+        background: blue;
+    }
+}

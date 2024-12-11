@@ -1,0 +1,27 @@
+// _general.scss] ******/
+
+body {
+    font-family: var(--montserrat);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    svg {
+        image-rendering: auto;
+    }
+    // overflow: hidden;
+}
+p {
+    max-width: 720px;
+    margin: 0 auto;
+    @include paragraph;
+}
+h2 {
+    @include h2Title;
+}
