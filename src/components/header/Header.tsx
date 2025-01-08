@@ -1,88 +1,120 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Nav from "./NavLink";
+import Nav from "./Nav";
 import Logo from "../svg_Icon/Logo";
-import {
-    handleScrollClick,
-    handleNavClick,
-    useScrollAnchors,
-} from "../../utils/scrollUtils";
 import { useScrollContext } from "../../utils/context/ScrollContext";
 import { useNavigation } from "../../utils/context/NavigationContext";
-import { MenuItem, menuItems, sections } from "./data";
+import { MenuItem, menuItems } from "../../assets/data/menuItems";
+import { sections } from "../../assets/data/sections";
+import { updateMenuClasses } from "../../utils/updateMenuUtils";
+import {
+    handleNavClick,
+    handleScrollClick,
+    useScrollAnchors,
+    useInitialScroll,
+} from "../../utils/scrollUtils";
 
-const Header = () => {
+interface NavProps {
+    menuItems: MenuItem[];
+    onNavigationClick: (path: string) => void;
+    openButton: boolean;
+    openMainButton: boolean;
+    tabletMain: boolean;
+    bigMenu: boolean;
+    setBigMenu: React.Dispatch<React.SetStateAction<boolean>>;
+    setOpenMainButton: React.Dispatch<React.SetStateAction<boolean>>;
+    setTabletMain: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header: React.FC<NavProps> = () => {
     const pathname = usePathname();
     const { currentRoute, updateRoute } = useNavigation();
+    const { activeSection } = useScrollContext();
 
+    useScrollAnchors(sections);
+    useInitialScroll(pathname);
+
+    // États pour la gestion des différentes tailles d'écran
+    const [openMainButton, setOpenMainButton] = useState(false);
+    const [tabletMain, setTabletMain] = useState(false);
+    const [openButton, setOpenButton] = useState(false);
+    const [bigMenu, setBigMenu] = useState(false);
+
+    // Wrapper pour adapter `handleNavClick`
     const handleNavigationClick = (path: string) => {
         handleNavClick(path, currentRoute, updateRoute, handleScrollClick);
     };
 
-    useScrollAnchors(sections);
-    const updateMenuClasses = (
-        items: MenuItem[],
-        activeSection: string
-    ): MenuItem[] => {
-        return items.map((item) => {
-            // Détermine si l'élément principal est actif
-            let isActive = false;
+    const updatedMenuItems = updateMenuClasses(
+        menuItems.mainLink,
+        menuItems.reservation,
+        menuItems.search,
+        menuItems.connection,
+        activeSection,
+        currentRoute
+    );
 
-            // Vérifiez si le chemin correspond à la route principale
-            if (item.path === "/") {
-                isActive =
-                    currentRoute === "/" ||
-                    (currentRoute.startsWith("/#") &&
-                        currentRoute !== "/#contact");
+    // Gestion des changements de largeur d'écran
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+
+            if (width < 1024) {
+                setTabletMain(false);
+                setOpenMainButton(false);
+                setOpenButton(false);
+                setBigMenu(false);
+            } else if (width < 1170) {
+                setBigMenu(false);
+                setTabletMain(true);
+                setOpenMainButton(true);
+                setOpenButton(false);
+            } else if (width < 1440) {
+                setTabletMain(true);
+                setOpenMainButton(true);
+                setOpenButton(false);
+                setBigMenu(true);
             } else {
-                isActive = currentRoute.startsWith(item.path);
+                setTabletMain(true);
+                setTabletMain(true);
+                setOpenMainButton(true);
+                setOpenButton(true);
             }
-            // Trouve un sous-élément actif (sous-menu)
-            const activeSubItem = item.subItems.find(
-                (sub) => sub.AnchorId === `#${activeSection}` // Correspondance avec une ancre
-            );
+        };
 
-            // Retourne l'élément mis à jour avec ses sous-items
-            return {
-                ...item,
-                class: isActive ? "active" : "",
-                subItems: item.subItems.map((sub) => ({
-                    ...sub,
-                    class: activeSubItem?.id === sub.id ? "active" : "",
-                })),
-            };
-        });
-    };
+        // Initialisation lors du montage
+        handleResize();
 
-    const { activeSection } = useScrollContext();
-    useEffect(() => {
-        if (window.location.hash) {
-            window.scrollTo({ top: 0 });
-            handleScrollClick(window.location.hash.substring(1));
-        }
-    }, [pathname]);
-    useScrollAnchors(sections);
+        // Ajout d'un écouteur sur les changements de taille d'écran
+        window.addEventListener("resize", handleResize);
 
-    const updatedMenuItems = updateMenuClasses(menuItems, activeSection);
-    useEffect(() => {
-        console.log("Active Section:", activeSection);
-    }, [activeSection]);
+        // Nettoyage lors du démontage
+        return () => window.removeEventListener("resize", handleResize);
+    }, [setBigMenu, setOpenButton, setOpenMainButton, setTabletMain]);
+
     return (
-        <header className="header">
+        <div className="header">
             <Link
                 href="/"
                 aria-label="Retour à la page d'accueil : Peur de la conduite"
+                className="logo-link"
             >
                 <Logo />
             </Link>
             <Nav
                 menuItems={updatedMenuItems}
                 onNavigationClick={handleNavigationClick}
+                tabletMain={tabletMain} // Gestion de la vue tablette
+                // setTabletMain={setTabletMain}
+                openMainButton={openMainButton} // Gestion de la vue Desktop
+                setOpenMainButton={setOpenMainButton}
+                openButton={openButton}
+                bigMenu={bigMenu} // Gestion de la vue Desktop large
             />
-        </header>
+        </div>
     );
 };
 

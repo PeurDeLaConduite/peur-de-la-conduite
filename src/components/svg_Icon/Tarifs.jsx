@@ -4,11 +4,10 @@ const Tarifs = () => {
     return (
         <div className="nav-icon">
             <svg
-                xmlns="http://www.w3.org/2000/svg"
                 width="18"
                 height="18"
                 fill="none"
-                xmlnsXlink="https://vecta.io/nano"
+                aria-hidden="true"
             >
                 <g clipPath="url(#A)">
                     <path
@@ -17,7 +16,7 @@ const Tarifs = () => {
                     />
                 </g>
                 <defs>
-                    <clipPath id="A">
+                    <clipPath>
                         <path d="M0 0h18v18H0z" />
                     </clipPath>
                 </defs>

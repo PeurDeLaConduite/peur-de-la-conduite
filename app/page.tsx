@@ -1,6 +1,9 @@
+import Contact from "../src/components/contact/Contact";
+
 export default function Home() {
     return (
         <>
+            {/* <title>Accueil | Peur de la conduite</title> */}
             <section className="section" id="slider">
                 <div className="fixed-menu"></div>
                 <h2>Main Page</h2>
@@ -40,17 +43,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="section" id="contact">
-                <div className="fixed-menu"></div>
-                <h2>Me Contacter</h2>
-                <div className="s2">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Velit aliquid provident magnam, delectus nobis est sunt
-                        iste aut at error assumenda voluptas, harum sed
-                        consequuntur voluptate soluta deleniti voluptatum
-                        consequatur.
-                    </p>
-                </div>
+                <Contact />
             </section>
         </>
     );
