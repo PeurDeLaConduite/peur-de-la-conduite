@@ -2,16 +2,17 @@
 
 import React from "react";
 
-import { MenuItem } from "../../assets/data/menuItems";
-import { svgComponents } from "./svgComponents";
-import HiddenDelayComponent from "./HiddenDelayComponent";
-import { getShowClass } from "./menuUtils";
-
+import { MenuItem } from "../../../assets/data/menuItems";
+import { svgComponents } from "../svgComponents";
+import HiddenDelayComponent from "../HiddenDelayComponent";
+import { getShowClass } from "../menuUtils";
+import { useNavigation } from "../../../utils/context/NavigationContext";
 interface NavLinkShowProps {
     menuItem: MenuItem;
     onNavigationClick: (path: string) => void;
     showNavLinks: boolean;
     handleMenuClick: (menuItemId: string) => void;
+    openMenuId?: string | null;
 }
 
 const RenderLink: React.FC<NavLinkShowProps> = ({
@@ -19,16 +20,27 @@ const RenderLink: React.FC<NavLinkShowProps> = ({
     onNavigationClick,
     showNavLinks,
     handleMenuClick,
+    openMenuId,
 }) => {
     const SvgIcon = svgComponents[menuItem.svg];
+    const { setOpenSubMenu } = useNavigation();
     const handleInteraction = (
         event: React.MouseEvent | React.KeyboardEvent
     ) => {
         event.preventDefault();
-        onNavigationClick(menuItem.path);
+        onNavigationClick(menuItem.path + menuItem.AnchorId);
         handleMenuClick(menuItem.id);
     };
+    const hoverInteraction = (
+        event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent,
+        menuItemId: string
+    ) => {
+        event.preventDefault();
 
+        if (openMenuId !== menuItemId) {
+            return setOpenSubMenu(menuItemId);
+        }
+    };
     return (
         <a
             role={!showNavLinks ? "menuitem" : ""}
@@ -42,6 +54,8 @@ const RenderLink: React.FC<NavLinkShowProps> = ({
                 }
             }}
             tabIndex={0}
+            onMouseEnter={(e) => hoverInteraction(e, menuItem.id)}
+            onFocus={(e) => hoverInteraction(e, menuItem.id)}
         >
             {SvgIcon && <SvgIcon />}
             <HiddenDelayComponent isVisible={showNavLinks} delay={450}>

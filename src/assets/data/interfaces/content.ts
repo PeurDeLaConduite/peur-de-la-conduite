@@ -21,7 +21,17 @@ export interface SliderContent {
     h2: string;
     h2bold: string;
     description: string;
+    ref: string;
+    go: string;
+    slideRef: number;
+}
+export interface SliderInfo {
+    info: string;
 }
 
-// Type pour l'index des contenus
-export type Content = SliderContent | AboutContent;
+export interface Slider {
+    sliderContent: SliderContent;
+    sliderInfo: SliderInfo;
+}
+// Type pour l'ref des contenus
+export type Content = SliderContent | SliderInfo | AboutContent;

@@ -1,9 +1,7 @@
-"use client";
-
 import React, { useState } from "react";
 import { MenuItem } from "../../assets/data/menuItems";
 import { useMenuBehavior } from "../../utils/updateMenuUtils";
-import NavLinkShow from "./NavLinkShow";
+import NavLinkShow from "./navLink/NavLinkShow";
 import NavInput from "./navInput/NavInput";
 import { useNavigation } from "../../utils/context/NavigationContext";
 
@@ -119,9 +117,9 @@ const Nav: React.FC<NavProps> = ({
 
             {openButton ? null : <div className="head-space"></div>}
 
-            <nav ref={navRef}>{renderMenu(menuItems.reservation)}</nav>
+            <nav>{renderMenu(menuItems.reservation)}</nav>
 
-            <nav ref={navRef} className={`research`} role="menubar">
+            <nav className={`research`} role="menubar">
                 {menuItems.search?.map((menuItem) => (
                     <NavInput
                         key={menuItem.id}
@@ -135,9 +133,7 @@ const Nav: React.FC<NavProps> = ({
                 ))}
             </nav>
 
-            <nav ref={navRef} className={`connect`}>
-                {renderMenu(menuItems.connection)}
-            </nav>
+            <nav className={`connect`}>{renderMenu(menuItems.connection)}</nav>
         </div>
     );
 };

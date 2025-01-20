@@ -1,22 +1,23 @@
 .section {
     width: 100%;
     height: 100vh;
+    &:first-child {
+        div {
+            
+        }
+    }
     .fixed-menu {
         height: calc(60px + 2rem);
         width: 100vw;
     }
     h2 {
-        height: 90px;
+        // height: 90px;
         width: 100%;
         display: flex;
         flex-flow: row;
         justify-content: center;
         align-items: center;
         text-align: center;
-        // font-size: 1.5rem;
-        // font-weight: 600;
-        background: #fff;
-        background: orangered;
         margin: 0;
     }
     .s1,

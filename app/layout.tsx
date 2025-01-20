@@ -5,7 +5,7 @@ import { SearchProvider } from "../src/utils/context/SearchContext";
 import { Suspense } from "react";
 import HeaderProps from "./headerProps";
 
-const RobotoFlex = localFont({
+export const RobotoFlex = localFont({
     src: "/fonts/RobotoFlex.woff2",
     variable: "--RobotoFlex",
     weight: "100 900",
@@ -25,7 +25,10 @@ const Nunito = localFont({
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://peur-de-la-conduite.lemaignent.com/"),
-    title: "Peur de la conduite",
+    title: {
+        template: '%s | Peur de la conduite',
+        default: 'Peur de la conduite',
+      },
     description:
         "Jérémy Lemaignent, Développeur front-end certifié, je crée des sites interactifs et réactifs transformant des idées en expériences web exceptionnelles avec HTML, CSS, JS et React JS.",
     authors: [{ name: "Jérémy Lemaignent" }],
@@ -55,17 +58,26 @@ export const metadata: Metadata = {
         site: "@JLem707",
         creator: "@JLem707",
     },
-    icons: {
-        icon: "img/favicon/logo.svg",
-        shortcut: "img/favicon/favicon-16x16.png",
+  icons: {
         apple: [
-            { url: "img/favicon/apple-touch-icon.png" },
-            {
-                url: "img/favicon/apple-touch-icon.png",
-                sizes: "180x180",
-                type: "image/png",
-            },
+            { url: "img/favicon/apple-touch-icon.png" },  // 120x120
+            { url: "img/favicon/logo.svg", sizes: "152x152", type: "image/png" },  // iPad
+            { url: "img/favicon/logo.svg", sizes: "180x180", type: "image/png" },  // Retina
         ],
+
+        icon : [
+            { url: "img/favicon/logo.svg", type: "image/svg+xml" },
+            { url: "img/favicon/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },  
+            { url: "img/favicon/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },  
+            { url: "img/favicon/icons/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },  
+            { url: "img/favicon/icons/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }, 
+            { url: "img/favicon/logo.svg", sizes: "48x48", type: "image/svg+xml" },  
+            { url: "img/favicon/logo.svg", sizes: "64x64", type: "image/svg+xml" }, 
+            { url: "img/favicon/logo.svg", sizes: "270x270", type: "image/svg+xml"  },  
+            { url: "img/favicon/logo.svg", sizes: "310x310", type: "image/svg+xml"  }, 
+            { url: "img/favicon/logo.svg", sizes: "152x152", type: "image/svg+xml"  },  
+            { url: "img/favicon/logo.svg", sizes: "180x180", type: "image/svg+xml" }, 
+        ],        
     },
     alternates: {
         canonical: "https://jeremy.lemaignent.com/",
@@ -84,14 +96,14 @@ export default function RootLayout({
                 id="top"
             >
                 <SearchProvider>
-                    <Suspense fallback={<div>Chargement du header...</div>}>
-                        <header>
-                            <div className="content-wrapper">
-                                <HeaderProps />
-                            </div>
-                        </header>
-                    </Suspense>
-                    <main>{children}</main>
+                        <Suspense fallback={<div>Chargement du header...</div>}>
+                            <header>
+                                <div className="content-wrapper">
+                                    <HeaderProps />
+                                </div>
+                            </header>
+                            <main>{children}</main>
+                        </Suspense>
                 </SearchProvider>
             </body>
         </html>

@@ -1,7 +1,21 @@
 @mixin smoothTransition($props...) {
     transition: $props 0.35s ease;
 }
+%interactive-link {
+    display: inline-flex;
+    justify-content: space-around;
+    // gap: 2rem;
+    width: auto;
+    border-radius: 100px;
+    background: $white;
+    @include menuShadow(rgba(0, 0, 0, 0.5));
+    transition: all 0.45s ease, color 0.3s ease;
 
+    &:hover,
+    &:focus {
+        @include menuShadow(rgba(0, 0, 0, 0.25));
+    }
+}
 header {
     background: linear-gradient(
         180deg,
@@ -11,16 +25,20 @@ header {
     );
     width: 100vw;
     position: fixed;
+    top: -1px;
+    z-index: 100;
 }
 .header {
     padding: 1rem 2rem 1.5rem 2rem;
     margin: 0 auto;
     display: inline-flex;
     gap: 2rem;
+    gap: clamp(1rem, 2vw, 4rem);
     flex-flow: row;
     box-sizing: border-box;
     width: 100%;
     height: 50px;
+    flex-flow: nowrap;
 
     // ? @media
     // padding: 1rem 2rem 1.5rem 1rem;
@@ -46,38 +64,24 @@ header {
     // gap: 100px;
 }
 nav {
-    animation: opacityAnimation 0.9s ease-in-out forwards;
+    animation: opacityAnimationDelay 0.9s ease-in-out forwards;
 }
 .main-nav,
 .reservationId,
 .search,
 .connection {
-    display: inline-flex;
-    justify-content: space-around;
-
-    gap: 2rem;
-
-    width: auto;
-    border-radius: 27.5px;
-    background: $white;
-    @include menuShadow(rgba(0, 0, 0, 0.25));
-    transition: all 0.45s ease, color 0.3s ease;
-    &:hover,
-    &:focus {
-        transform: scale(1.05);
-        @include menuShadow(rgba(0, 0, 0, 0.2));
-        .nav-icon {
-            transform: scale(1.1);
-            z-index: 1000;
-        }
-    }
+    @extend %interactive-link;
     // ? @media
     // gap: 2rem;
 }
 .main-nav {
+    z-index: 1000;
     padding: 1rem 1.5rem;
     gap: 1.5rem;
     .nav-circle {
+        padding: 0rem;
+    }
+    .nav-padding {
         padding: 0rem;
     }
     &:hover,
@@ -85,19 +89,16 @@ nav {
         transform: scale(1);
     }
 }
+
 .nav-circle {
     padding: 1rem;
     gap: 2rem;
 }
 .nav-padding {
     padding: 1rem 1.5rem;
-    gap: 2rem;
+    // gap: 2rem;
 }
-.main-nav .nav-padding {
-    padding: 0rem;
-}
-
-.icon-color_secondary {
+.main-nav .icon-color_secondary {
     fill: $secondary-blue;
 }
 .reservationId {
@@ -107,7 +108,7 @@ nav {
     .nav-link,
     .icon-color {
         fill: $white;
-        color: #fff;
+        color: $white;
         text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.35);
         filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, 0.25));
         transition: fill 0.3s ease, color 0.3s ease;
@@ -150,6 +151,7 @@ nav {
     &:hover,
     &:focus {
         // transform: scale(1.05);
+        // border: 1px solid #000;
         @include menuShadow(rgba(0, 0, 0, 0.2));
         .nav-link,
         .icon-color {
@@ -247,6 +249,9 @@ nav .group_link-submenu {
 input.show-link {
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 112px;
+    width: auto;
+    // border: 1px solid #000;
     // animation: opacityAnimation 0.2s ease-in-out forwards;
 }
 .nav-link {
@@ -311,7 +316,7 @@ option.nav-link {
     height: auto;
     margin-left: 0.5rem;
     width: calc(100% + 3.5rem);
-    padding-top: 1.5rem;
+    padding-top: 2rem;
     box-sizing: border-box;
     z-index: 10;
     transition: all 0.35s ease;
@@ -336,7 +341,7 @@ nav .nav-padding .submenu:not(.open) {
     padding: 1rem;
     display: flex;
     flex-flow: column;
-    @include menuShadow(rgba(0, 0, 0, 0.25));
+    @include menuShadowHover(rgba(0, 0, 0, 0.25));
 }
 .submenu_group .nav-link {
     position: relative; // Nécessaire pour positionner les pseudo-éléments
@@ -436,10 +441,10 @@ nav .nav-padding .submenu:not(.open) {
     position: relative;
     top: 0;
     z-index: 1;
-    @include menuShadow(rgba(0, 0, 0, 0.25));
+    @include menuShadow(rgba(0, 0, 0, 0.5));
     border-radius: 50%;
     background: $white;
-    border: 1px solid $secondary-blue;
+
     cursor: pointer;
     .mouth,
     .eyes {
@@ -459,7 +464,7 @@ nav .nav-padding .submenu:not(.open) {
         @include dropShadow(rgba(0, 0, 0, 0.25));
         .logo-bg {
             @include dropShadow(rgba(0, 0, 0, 0.05));
-            border-radius: 50%;
+            border-radius: 50% !important;
         }
         .logo-circle {
             display: none;

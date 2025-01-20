@@ -1,8 +1,6 @@
-"use client";
-
 import React from "react";
 import { MenuItem } from "../../assets/data/menuItems";
-import SubMenu from "./SubMenu";
+import SubMenu from "./navLink/SubMenu";
 import { svgComponents } from "./svgComponents";
 
 interface NavLinkProps {
@@ -25,7 +23,7 @@ const NavLink: React.FC<NavLinkProps> = ({
             <a
                 aria-label={`Page ${menuItem.title}`}
                 className={`head-link ${menuItem.class}`}
-                href={menuItem.path}
+                href={menuItem.path + menuItem.AnchorId}
                 onClick={(e) => {
                     e.preventDefault();
                     onNavigationClick(menuItem.path);

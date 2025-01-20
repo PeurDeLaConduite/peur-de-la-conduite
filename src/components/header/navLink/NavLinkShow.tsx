@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { MenuItem } from "../../assets/data/menuItems";
+import { MenuItem } from "../../../assets/data/menuItems";
 import SubMenu from "./SubMenu";
 import RenderLink from "./RenderLink";
-import { getShowGroupClass } from "./menuUtils";
+import { getShowGroupClass } from "../menuUtils";
 interface NavLinkShowProps {
     menuItem: MenuItem;
     onNavigationClick: (path: string) => void;
@@ -51,7 +51,7 @@ const NavLinkShow: React.FC<NavLinkShowProps> = ({
 
     return openMainButton || mainNav || (openButton && showNavLinks) ? (
         <div
-            className={`group_link-submenu BASE ${menuItem.id} ${
+            className={`group_link-submenu ${menuItem.id} ${
                 !openMainButton ? "nav-padding" : ""
             }`}
         >

@@ -1,10 +1,8 @@
-"use client";
-
 import React from "react";
 import { MenuItem } from "../../../assets/data/menuItems";
 import SubResult from "./SubResult";
 import useSearchHandler from "./useSearchHandler";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import RenderInputButton from "./RenderInputButton";
 import HiddenDelayComponent from "../HiddenDelayComponent";
 import { getShowGroupClass, getShowClass } from "../menuUtils";
@@ -32,7 +30,6 @@ const NavInput: React.FC<NavInputProps> = ({
     onFocus,
 }) => {
     const router = useRouter();
-    const searchParams = useSearchParams();
     const {
         query,
         suggestions,
@@ -42,7 +39,7 @@ const NavInput: React.FC<NavInputProps> = ({
         handleSubmit,
         handleReset,
         handleSuggestionClick,
-    } = useSearchHandler(router, searchParams);
+    } = useSearchHandler(router);
 
     return (
         <div
