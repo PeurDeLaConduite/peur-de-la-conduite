@@ -1,49 +1,93 @@
 "use client";
-
+import { useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
+// Fonction pour récupérer un paramètre depuis l'URL (query string)
+const getParamsFromSearch = (
+    searchParams: URLSearchParams,
+    key: string
+): string | null => {
+    return searchParams.get(key);
+};
+
+// Fonction pour obtenir l'URL courante
+const getWordURL = (): Location => {
+    return window.location;
+};
+
+// Fonction pour obtenir le hash de l'URL (partie après #)
+const getURLHash = (): string => {
+    const hash = getWordURL().hash.split("?")[0];
+    return hash || "";
+};
+
+// Fonction pour récupérer un paramètre à partir du hash
+const getParamFromHash = (key: string): string | null => {
+    const { search, hash } = getWordURL();
+    let queryString = search;
+    const hashIndex = hash.indexOf("?");
+    if (hashIndex !== -1) {
+        queryString += hash.slice(hashIndex);
+    }
+    const params = new URLSearchParams(queryString);
+    return params.get(key);
+};
+
+// Hook personnalisé pour gérer les paramètres d'URL
 export const useURLParams = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const getParams = (key: string): string | null => searchParams.get(key);
-    const getParam = (key: string): string | null => {
-        const { search, hash } = window.location; // Récupère `search` et `hash`
 
-        // Combine `search` et les paramètres après `#` (s'il y en a)
-        let queryString = search; // Ex : "?badKeyWord=ssssssss"
-        const hashIndex = hash.indexOf("?");
-        if (hashIndex !== -1) {
-            queryString += hash.slice(hashIndex); // Ajoute les paramètres du `hash`
-        }
+    // Fonction pour créer une chaîne de requête (query string) mise à jour
+    const createQueryString = useCallback(
+        (searchParams: URLSearchParams, name: string, value: string) => {
+            const params = new URLSearchParams(searchParams.toString());
+            params.set(name, value); // Met à jour ou définit le paramètre
+            return params.toString(); // Retourne la nouvelle chaîne de requête
+        },
+        []
+    );
 
-        // Utilise URLSearchParams pour récupérer la valeur
-        const params = new URLSearchParams(queryString);
-        return params.get(key);
-    };
-
-    const setParam = (key: string, value: string): void => {
-        const params = new URLSearchParams(searchParams.toString());
-        params.set(key, value); // Met à jour ou ajoute le paramètre
-
-        const currentHash = window.location.hash.split("?")[0]; // Récupère l'ancre sans les paramètres
-        const newUrl = `${currentHash}?${params.toString()}`; // Construit la nouvelle URL proprement
-
-        router.push(newUrl); // Mets à jour l'URL avec Next.js
-    };
-
-    const deleteParam = (key: string): void => {
+    // Fonction pour supprimer un paramètre de l'URL
+    const deleteURLParam = (
+        router: ReturnType<typeof useRouter>,
+        searchParams: URLSearchParams,
+        key: string
+    ): void => {
         const params = new URLSearchParams(searchParams.toString());
         params.delete(key);
-
-        // Récupère l'ID d'ancre actuel
-        const currentHash = window.location.hash || "";
-
-        // Met à jour l'URL tout en conservant l'ancre
+        const currentHash = getURLHash();
         const newUrl = params.toString()
             ? `${currentHash}?${params.toString()}`
-            : currentHash; // Si aucun paramètre restant, garde uniquement l'ancre
+            : currentHash;
         router.push(newUrl);
     };
 
-    return { getParam, getParams, setParam, deleteParam };
+    // Fonction pour obtenir un paramètre depuis la query string
+    const getParams = (key: string) => {
+        if (searchParams) {
+            return getParamsFromSearch(searchParams, key);
+        }
+        return null;
+    };
+
+    // Fonction pour obtenir un paramètre depuis le hash
+    const getParam = (key: string) => getParamFromHash(key);
+
+    // Fonction pour définir un paramètre dans l'URL
+    const setParam = (key: string, value: string) => {
+        if (searchParams) {
+            const newQueryString = createQueryString(searchParams, key, value);
+            router.push(`?${newQueryString}`);
+        }
+    };
+
+    // Fonction pour supprimer un paramètre de l'URL
+    const deleteParam = (key: string) => {
+        if (searchParams) {
+            deleteURLParam(router, searchParams, key);
+        }
+    };
+
+    return { getParams, getParam, setParam, deleteParam };
 };

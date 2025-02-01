@@ -1,5 +1,4 @@
 import React from "react";
-import "./button.scss";
 import Link from "next/link";
 
 const ButtonLink = ({
@@ -10,7 +9,7 @@ const ButtonLink = ({
     href: string;
 }>) => {
     return (
-        <Link className="bt-style_blue" href={href}>
+        <Link className="btn-style_blue flx-c" href={href}>
             {children}
         </Link>
     );

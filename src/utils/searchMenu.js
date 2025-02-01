@@ -3,7 +3,16 @@ export default function searchQuery(jsonData, query) {
     const seenResults = new Set(); // Pour stocker les résultats uniques
 
     // Clés à ignorer dans la recherche
-    const ignoredKeys = ["id", "AnchorId", "class", "svg", "path"];
+    const ignoredKeys = [
+        "id",
+        "AnchorId",
+        "class",
+        "svg",
+        "path",
+        "link",
+        "alt",
+        "icon",
+    ];
 
     // Vérification de la validité de `jsonData`
     if (!jsonData || typeof jsonData !== "object") {
@@ -36,6 +45,7 @@ export default function searchQuery(jsonData, query) {
 
                 const value = item[key];
 
+                // Si la valeur est une chaîne et correspond à la query
                 if (
                     typeof value === "string" &&
                     value.toLowerCase().includes(query.toLowerCase())
@@ -46,8 +56,9 @@ export default function searchQuery(jsonData, query) {
                             path: sanitizedPath,
                             text: value,
                             go: item.go,
+                            slideRef: item.slideRef, // Ajout de la référence du slide
                         });
-                        seenResults.add(resultKey); // Stockez la clé dans le Set
+                        seenResults.add(resultKey); // Stocke la clé dans le Set
                     }
                 } else if (Array.isArray(value)) {
                     // Rechercher dans les tableaux
@@ -63,6 +74,7 @@ export default function searchQuery(jsonData, query) {
                                 results.push({
                                     path: sanitizedPath,
                                     text: arrayItem,
+                                    slideRef: item.slideRef, // Ajout de la référence du slide
                                 });
                                 seenResults.add(resultKey);
                             }

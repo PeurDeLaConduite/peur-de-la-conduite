@@ -1,9 +1,13 @@
-import Contact from "../../src/components/contact/Contact";
-
+import ContactHome from "../../src/home/contact-section";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+    title: "Contact",
+};
 export default function Page() {
     return (
         <section className="section">
-            <Contact />
+            <div className="fixed-menu"></div>
+            <ContactHome />
         </section>
     );
 }
