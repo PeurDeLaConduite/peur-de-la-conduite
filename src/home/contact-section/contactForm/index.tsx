@@ -26,7 +26,7 @@ interface FormData {
 type Errors = Partial<Record<keyof FormData, string>>;
 
 const ContactForm = () => {
-    const [state, handleSubmitFormspree] = useForm("xvojloaj");
+    const [state, handleSubmitFormspree] = useForm("xjkgrarq");
     const [errors, setErrors] = useState<Errors>({});
     const [formData, setFormData] = useState<FormData>({
         prenom: "",
@@ -35,36 +35,29 @@ const ContactForm = () => {
         telephone: "",
         message: "",
     });
+
+    // Validation globale des champs
     const validateFields = (): boolean => {
-        const newErrors: Errors = {
+        let newErrors: Errors = {
             prenom: validateName(formData.prenom),
             nom: validateName(formData.nom),
-            email: formData.email ? validateEmail(formData.email) : "",
+            email: validateEmail(formData.email),
             telephone: formData.telephone
                 ? validatePhoneNumber(formData.telephone)
                 : "",
             message: validateMessage(formData.message),
         };
 
-        // Si ni l'email ni le téléphone ne sont renseignés, on met une erreur
-        if (!formData.email && !formData.telephone) {
-            newErrors.email =
-                "Veuillez fournir au moins un email ou un téléphone.";
-            newErrors.telephone =
-                "Veuillez fournir au moins un email ou un téléphone.";
-        } else {
-            // Si un des deux est renseigné, on supprime l'erreur sur l'autre champ
-            if (formData.email) {
-                delete newErrors.telephone; // Supprime l'erreur du téléphone si l'email est renseigné
-            }
-            if (formData.telephone) {
-                delete newErrors.email; // Supprime l'erreur de l'email si le téléphone est renseigné
-            }
-        }
+        // Filtrer les erreurs vides
+        newErrors = Object.fromEntries(
+            Object.entries(newErrors).filter(([, value]) => Boolean(value))
+        ) as Errors;
 
-        setErrors(newErrors); // Mises à jour des erreurs
-        return Object.keys(newErrors).length === 0; // Si aucune erreur, on peut envoyer
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
+
+    // Gestion du changement des champs
     const handleChange = (
         e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
@@ -97,7 +90,7 @@ const ContactForm = () => {
     };
 
     return (
-        <form className="ctc-form" onSubmit={handleSubmit}>
+        <form className="ctc-form" method="POST" onSubmit={handleSubmit}>
             <ContactFormTitle />
             <ContactQuestions />
             <Form

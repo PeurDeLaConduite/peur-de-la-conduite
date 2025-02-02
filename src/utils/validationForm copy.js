@@ -9,7 +9,11 @@ export const validateName = (name) => {
     }
     return "";
 };
-
+export const validatePhoneNumber = (phone) => {
+    const phoneRegExp = /^(\+33|0)[1-9](\d{8})$/;
+    if (!phone) return "";
+    return phoneRegExp.test(telephone) ? "" : "Numéro de téléphone invalide.";
+};
 // Validation de l'adresse email
 export const validateEmail = (email) => {
     const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -18,14 +22,7 @@ export const validateEmail = (email) => {
     }
     return "";
 };
-export const validatePhoneNumber = (phone) => {
-    const phoneRegExp = /^(\+33|0)[1-9](\d{8})$/;
-    if (!telephone) return "";
-    if (!phoneRegExp.test(phone)) {
-        return "Veuillez entrer un numéro de téléphone valide.";
-    }
-    return "";
-};
+
 // Validation de la date de naissance
 export const validateBirthDate = (birthDate) => {
     const currentDate = new Date();
@@ -111,6 +108,8 @@ export const isNotEmpty = (value, fieldName = "Field") => {
     }
     return ""; // Pas d'erreur
 };
+
+
 
 // Validation du message
 export const validateMessage = (message) => {
