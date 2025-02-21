@@ -127,6 +127,7 @@
         .segment {
             flex-flow: column nowrap;
             width: calc(100% - 64px);
+
             &-title {
                 flex-flow: row nowrap;
             }

@@ -1,4 +1,7 @@
 @media (max-width: 1390px) {
+    body {
+        background: $white;
+    }
     .segment {
         width: $width-card_bg;
         height: auto;
