@@ -102,6 +102,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr-FR">
+            <head>
+                <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.peur-de-la-conduite.fr/"/>
+            </head>
             <body
                 className={`${RobotoFlex.variable} ${Montserrat.variable} ${Nunito.variable}`} id="top"
             >
