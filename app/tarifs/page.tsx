@@ -1,132 +1,95 @@
 import { Metadata } from "next";
-import ContactBackGround from "../../src/home/contact-section/contactBackGround";
-
+import { servicesData } from "../../src/assets/data/servicesData";
+import React from "react";
 export const metadata: Metadata = {
     title: "Nos Tarifs",
 };
-
+import Tarifs from "../../src/components/svg_Icon/Tarifs";
 export default function Page() {
     return (
-        <section className="section contact " id="prices">
+        <section className="section page" id="prices">
             <div className="fixed-menu"></div>
-            <ContactBackGround />
             <div className="container">
-                <h1>Tarifs des Prestations</h1>
+                <div className="page-title">
+                    <Tarifs />
+                    <h1 className="title">Tarifs des Prestations</h1>
+                </div>
 
-                <section className="individual-session">
-                    <h2>Séance Individuelle</h2>
-                    <p>
-                        <strong>Séance sans pack</strong>: 50 €
-                    </p>
-                    <p>
-                        <strong>Durée</strong>: 1 h
-                    </p>
-                </section>
+                {Object.values(servicesData).map((category) => (
+                    <React.Fragment key={category.id}>
+                        <div className="ref" id={category.ref}>
+                            <div className="fixed-menu"></div>
+                            <section className="category flx-c" id={category.ref}>
+                                <h2 className="category-title">
+                                    {category.title}
+                                </h2>
+                                <p className="category-intro">
+                                    {category.intro}
+                                </p>
 
-                <section className="packs">
-                    <h3>Présentation des Packs</h3>
-                    {/* <h3 id="futurs-conducteurs-title">Futurs Conducteurs</h3> */}
-                    <table
-                        className="futurs-conducteurs"
-                        aria-labelledby="futurs-conducteurs-title"
-                    >
-                        <caption>Futurs Conducteurs</caption>
-                        <thead>
-                            <tr>
-                                <th>Prestations</th>
-                                <th>Nombre de Séances</th>
-                                <th>Durée (h)</th>
-                                <th>Prix du Pack (€)</th>
-                                <th>Coût Normal (€)</th>
-                                <th>Remise (€)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Pack coaching stress avant examen</td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>120</td>
-                                <td>150</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Pack coaching situations de conduite en
-                                    groupe (max 7)
-                                </td>
-                                <td>2H30</td>
-                                <td>2.5</td>
-                                <td>30</td>
-                                <td>125</td>
-                                <td>95</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Pack coaching conduite
-                                    accompagnée/Supervisée
-                                </td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>120</td>
-                                <td>150</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Pack coaching situation de conduite
-                                    individuel
-                                </td>
-                                <td>2</td>
-                                <td>2</td>
-                                <td>80</td>
-                                <td>100</td>
-                                <td>20</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                {category.services.map((service, index) => (
+                                    <div
+                                        className="packs-container"
+                                        key={index + "trf"}
+                                    >
+                                        <div className="price-title">
+                                            <div className="coach">
+                                                <p>Coaching</p>
+                                                <div className="service-image">
+                                                    <img
+                                                        src={service.imgSrc}
+                                                        alt={service.imgAlt}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="coach2">
+                                                <div className="empty"></div>
 
-                    {/* <h3>Conducteurs Expérimentés</h3> */}
-                    <table className="conducteurs-experimentes">
-                        <caption>Conducteurs Expérimentés</caption>
-                        <thead>
-                            <tr>
-                                <th>Prestations</th>
-                                <th>Nombre de Séances</th>
-                                <th>Durée (h)</th>
-                                <th>Prix du Pack (€)</th>
-                                <th>Coût Normal (€)</th>
-                                <th>Remise (€)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Pack coaching peur de la conduite</td>
-                                <td>5</td>
-                                <td>5</td>
-                                <td>200</td>
-                                <td>250</td>
-                                <td>50</td>
-                            </tr>
-                            <tr>
-                                <td>Pack coaching situation de conduite</td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>120</td>
-                                <td>150</td>
-                                <td>30</td>
-                            </tr>
-                            <tr>
-                                <td>Pack coaching amélioration conduite</td>
-                                <td>3</td>
-                                <td>3</td>
-                                <td>120</td>
-                                <td>150</td>
-                                <td>30</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
+                                                <h3>{service.title}</h3>
+                                            </div>
+                                        </div>
+                                        <div className="price-card">
+                                            <table className="price-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nb de Séances</th>
+                                                        <th>Prix Total (€)</th>
+                                                        <th>Prix Séance (€)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {category.prices.map(
+                                                        (price, idx) => (
+                                                            <tr key={idx}>
+                                                                <td className="nb-sessions">
+                                                                    {
+                                                                        price.sessions
+                                                                    }
+                                                                </td>
+                                                                <td className="text-center">
+                                                                    {price.total.toFixed(
+                                                                        2
+                                                                    )}
+                                                                    €
+                                                                </td>
+                                                                <td className="text-center">
+                                                                    {price.perSession.toFixed(
+                                                                        2
+                                                                    )}
+                                                                    €
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    )}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                ))}
+                            </section>
+                        </div>
+                    </React.Fragment>
+                ))}
             </div>
         </section>
     );
