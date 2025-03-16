@@ -31,7 +31,7 @@ const Nunito = localFont({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://peur-de-la-conduite.fr/"),
+    metadataBase: new URL("https://www.peur-de-la-conduite.fr/"),
     title: {
         template: '%s | Peur de la conduite',
         default: 'Peur de la conduite',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
             Mounir Bouakkaz, enseignant de la conduite, vous accompagne avec un coaching personnalisé 
             pour vaincre l’amaxophobie, gérer le stress avant examen et améliorer votre maîtrise au volant.
         `,
-        url: "https://peur-de-la-conduite.fr/",
+        url: "https://www.peur-de-la-conduite.fr/",
         siteName: "Peur de la conduite",
         locale: "fr_FR",
         type: "website",
