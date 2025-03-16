@@ -14,5 +14,5 @@ Disallow: /*/loading
 Allow: /
 
 # Fournir l'emplacement du sitemap
-Sitemap: https://peur-de-la-conduite.fr/sitemap.xml
-Sitemap: https://m.peur-de-la-conduite.fr/sitemap.xml
+Sitemap: https://desktop.peur-de-la-conduite.fr/sitemap.xml
+Sitemap: https://mobile.peur-de-la-conduite.fr/sitemap.xml
