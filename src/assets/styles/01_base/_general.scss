@@ -26,6 +26,21 @@ body {
 #top {
     border-top: 0.5px solid transparent;
 }
+section#hs {
+    /* background: rgb(255, 177, 33); */
+}
+section#hs > .loader {
+    top: 0;
+    z-index: -1;
+}
+section#hs > h2 {
+    padding-left: 2rem;
+    // height: 45vh;
+}
+section#hs > p {
+    padding: 2.5rem;
+    height: 90vh;
+}
 .search {
     max-width: 223px !important;
     .nav-padding {
