@@ -1,27 +1,23 @@
-const fs = require('fs');
-const { SitemapStream, streamToPromise } = require('sitemap');
+const fs = require("fs");
+const { SitemapStream } = require("sitemap");
 
-const pages = [
-  '/',
-  '/blog',
-  '/contact',
-  '/services',
-  '/tarifs',
-  '/search',
-  '/reservation',
+const siteUrl = "https://desktop.peur-de-la-conduite.fr"; // ou desktop selon ton cas
+
+const links = [
+    { url: "/", changefreq: "daily", priority: 1.0 },
+    { url: "/contact", changefreq: "monthly", priority: 0.8 },
+    { url: "/services", changefreq: "monthly", priority: 0.8 },
+    { url: "/tarifs", changefreq: "monthly", priority: 0.8 },
+    // Tu peux en rajouter ici plus tard
 ];
 
-async function generateSitemap() {
-  const sitemap = new SitemapStream({ hostname: 'https://peur-de-la-conduite.fr' });
+const sitemap = new SitemapStream({ hostname: siteUrl });
+const writeStream = fs.createWriteStream("public/sitemap.xml");
 
-  pages.forEach(page => {
-    sitemap.write({ url: page, changefreq: 'weekly', priority: 0.8 });
-  });
+sitemap.pipe(writeStream);
+links.forEach((link) => sitemap.write(link));
+sitemap.end();
 
-  sitemap.end();
-
-  const sitemapXML = await streamToPromise(sitemap).then(data => data.toString());
-  fs.writeFileSync('public/sitemap.xml', sitemapXML);
-}
-
-generateSitemap();
+writeStream.on("finish", () => {
+    console.log("✅ Sitemap généré dans /public/sitemap.xml");
+});

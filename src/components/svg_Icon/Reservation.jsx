@@ -3,13 +3,7 @@ import React from "react";
 const Reservation = () => {
     return (
         <div className="nav-icon">
-            <svg
-                width="18"
-                height="18"
-                fill="none"
-                aria-hidden="true"
-                viewBox="0 0 18 18"
-            >
+            <svg fill="none" aria-hidden="true" viewBox="0 0 18 18">
                 <g clipPath="url(#clip0_167_8479)">
                     <g opacity="0.5" filter="url(#filter0_d_167_8479)">
                         <path

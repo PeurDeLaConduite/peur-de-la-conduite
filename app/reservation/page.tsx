@@ -2,20 +2,38 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Réservation",
 };
-
+import Reservation from "../../src/components/svg_Icon/Reservation";
+import Loader from "../../src/components/loader/Loader";
+import Cone from "./Cone";
+import Image from "next/image";
 export default async function Page() {
-    await new Promise((r) => setTimeout(r, 1200));
     return (
         <section className="section" id="s1">
-            <div className="fixed-menu"></div>
-            <h2>Réservation</h2>
-            <div className="s1">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Velit aliquid provident magnam, delectus nobis est sunt iste
-                    aut at error assumenda voluptas, harum sed consequuntur
-                    voluptate soluta deleniti voluptatum consequatur.
-                </p>
+            {/* <div className="fixed-menu"></div> */}
+            <div className="container">
+                <div>
+                    <h1>Réservation</h1>
+                    <p>Cette page est en construction</p>
+                </div>
+                <div className="ld-frame">
+                    <img
+                        src="/img/retroviseur-1.svg"
+                        alt="loader"
+                        width={480}
+                        height={196}
+                    />
+                    <div className="ld-dot2"></div>
+                    <div className="ld-dot1"></div>
+                    <div className="ld-dot"></div>
+                </div>
+                <Image
+                    className="construct"
+                    src="/img/Plots-Construction.png"
+                    alt="Decorative background for construct section"
+                    width={1388}
+                    height={691}
+                    loading="lazy"
+                />
             </div>
         </section>
     );
