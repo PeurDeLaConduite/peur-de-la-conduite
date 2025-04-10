@@ -17,5 +17,8 @@ Disallow: /*/error
 
 Allow: /
 
+# Inclure le sitemap de la version desktop
 Sitemap: https://desktop.peur-de-la-conduite.fr/sitemap.xml
+
+# Inclure le sitemap de la version mobile (si nécessaire, selon ton approche)
 Sitemap: https://mobile.peur-de-la-conduite.fr/sitemap.xml

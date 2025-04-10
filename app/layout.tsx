@@ -107,7 +107,30 @@ export default function RootLayout({
     return (
         <html lang="fr-FR">
             <head>
-                <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.peur-de-la-conduite.fr/"/>
+                <link rel="alternate" media="only screen and (max-width: 640px)" href="https://mobile.peur-de-la-conduite.fr/"/>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "LocalBusiness",
+                        "name": "Peur de la conduite",
+                        "image": "https://desktop.peur-de-la-conduite.fr/img/about/avatar.svg",
+                        "url": "https://peur-de-la-conduite.fr",
+                        "telephone": "+33 6 74 25 91 81", // à adapter
+                        "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Le Havre",
+                        "addressCountry": "FR"
+                        },
+                        "description": "Coaching personnalisé pour vaincre la peur de la conduite, gérer le stress et améliorer votre confiance au volant.",
+                        "founder": {
+                        "@type": "Person",
+                        "name": "Mounir Bouakkaz"
+                        }
+                    })
+                    }}
+                />
             </head>
             <body
                 className={`${RobotoFlex.variable} ${Montserrat.variable} ${Nunito.variable}`} id="top"
