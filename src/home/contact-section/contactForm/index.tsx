@@ -90,7 +90,12 @@ const ContactForm = () => {
     };
 
     return (
-        <form className="ctc-form" method="POST" onSubmit={handleSubmit}>
+        <form
+            className="ctc-form"
+            method="POST"
+            onSubmit={handleSubmit}
+            id="ctc-form"
+        >
             <ContactFormTitle />
             <ContactQuestions />
             <Form
