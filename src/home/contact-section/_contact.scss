@@ -1,5 +1,6 @@
 .contact {
     margin-bottom: 136px;
+    margin-top: 50px;
     .contact-bg {
         position: relative;
         top: 0;
@@ -13,17 +14,18 @@
         position: relative;
         z-index: 1;
         top: 0;
-
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 45px;
         width: 100%;
         height: 100%;
         padding: 45px 84px;
+        overflow: hidden;
         img.contact-bg {
             position: absolute;
             z-index: 0;
             object-fit: cover; /* Assure que l'image couvre tout en respectant ses proportions */
             width: 100%; /* S'adapte à la largeur du conteneur */
             height: 100%; /* S'adapte à la hauteur du conteneur */
-            border-radius: 45px; /* Applique le rayon aux coins */
         }
         .ctc-layout {
             position: relative;
@@ -63,6 +65,7 @@
                 flex-flow: wrap;
                 justify-content: space-between;
                 row-gap: 45px;
+
                 .ctc-card,
                 .ctc-social_card {
                     display: flex;
@@ -89,6 +92,54 @@
                         color: #000;
                     }
                 }
+
+                a.ctc-card {
+                    position: relative;
+                    // display: inline-block;
+                    transition: transform 0.3s ease;
+
+                    &::before,
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        transition: transform 0.3s ease, opacity 0.3s ease;
+                        z-index: -1;
+                    }
+
+                    &::before {
+                        // background: rgba(
+                        //     0,
+                        //     0,
+                        //     0,
+                        //     0.05
+                        // );
+                        transform: scale(0.95);
+                        opacity: 0;
+                    }
+
+                    &::after {
+                        // border: 1px solid rgba(0, 0, 0, 0.1);
+                        transform: scale(1);
+                        opacity: 0;
+                    }
+
+                    &:hover {
+                        transform: scale(1.05);
+
+                        &::before {
+                            transform: scale(1.1);
+                            opacity: 1;
+                        }
+
+                        &::after {
+                            transform: scale(1.05);
+                            opacity: 1;
+                        }
+                    }
+                }
+
                 .ctc-social_card {
                     width: calc(831px);
                     text-align: left;
