@@ -108,6 +108,12 @@ export default function RootLayout({
         <html lang="fr-FR">
             <head>
                 <link rel="alternate" media="only screen and (max-width: 640px)" href="https://mobile.peur-de-la-conduite.fr/"/>
+                <link rel="preload" href="/defer.css" as="style" />
+                <link
+                    rel="stylesheet"
+                    href="/defer.css"
+                    fetchPriority="low"
+                />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

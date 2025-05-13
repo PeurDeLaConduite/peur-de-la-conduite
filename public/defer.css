@@ -1,0 +1,62 @@
+.pp_politique-container strong,
+.pp_title {
+    font-weight: 700;
+    font-family: "RobotoFlex", sans-serif !important;
+}
+.pp_politique-container {
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 48px;
+    margin-bottom: 96px;
+    padding: 24px 32px 32px 32px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+.pp_title {
+    font-size: 2rem;
+    text-align: center;
+    margin: 16px 0 40px 0 !important;
+}
+.pp_section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+.pp_list {
+    list-style-type: disc;
+    margin-left: 20px;
+    line-height: 1.8;
+}
+.pp_politique-container em {
+    font-style: italic;
+}
+section.pp {
+    display: block !important;
+    margin: 24px 0 32px 0 !important;
+}
+section.pp h2 {
+    display: block !important;
+    font-family: "RobotoFlex", sans-serif !important;
+    text-align: left !important;
+    margin: 0 0 16px 0 !important;
+    font-size: 1.5rem !important;
+    font-weight: 700;
+}
+section.pp p,
+section.pp li {
+    max-width: inherit !important;
+    width: inherit !important;
+    font-family: "RobotoFlex", sans-serif !important;
+    font-size: 1.25rem !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    font-weight: 400;
+}
+
+section.pp {
+    margin: 24px 0 !important;
+}
