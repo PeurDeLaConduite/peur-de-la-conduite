@@ -3,12 +3,14 @@ import ButtonLink from "./button/ButtonLink";
 const PrivacyPolicy = () => {
     return (
         <div className="pp_politique-container">
-            <h1 className="pp_title">Politique de Confidentialité</h1>
+            <h2 className="pp_title" id="privacy-policy">
+                Politique de Confidentialité
+            </h2>
 
             <section className="pp">
-                <h2 className="pp_section-title">
+                <h3 className="pp_section-title">
                     🔒 Aucune transmission à des tiers
-                </h2>
+                </h3>
                 <p>
                     Les informations que vous renseignez (nom, prénom, email,
                     téléphone, etc.){" "}
@@ -21,7 +23,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section className="pp">
-                <h2 className="pp_section-title">🔐 Sécurité maximale</h2>
+                <h3 className="pp_section-title">🔐 Sécurité maximale</h3>
                 <p>
                     Vos données sont stockées de manière sécurisée avec des
                     mesures techniques et organisationnelles destinées à{" "}
@@ -30,15 +32,13 @@ const PrivacyPolicy = () => {
             </section>
 
             <section className="pp">
-                <h2 className="pp_section-title">✅ Consentement clair</h2>
-
+                <h3 className="pp_section-title">✅ Consentement clair</h3>
                 <ul className="pp_list">
                     <li>
                         En cochant la case{" "}
                         <em>
                             <strong>
-                                "J'ai lu et accepté les conditions
-                                d'utilisation"
+                                {`"J'ai lu et accepté les conditions d'utilisation"`}
                             </strong>
                         </em>
                         , vous acceptez notre politique de confidentialité.
@@ -53,7 +53,7 @@ const PrivacyPolicy = () => {
             </section>
 
             <section className="pp">
-                <h2 className="pp_section-title">📬 Vos droits</h2>
+                <h3 className="pp_section-title">📬 Vos droits</h3>
                 <p>
                     Vous pouvez à tout moment demander la{" "}
                     <strong>modification ou la suppression</strong> de vos

@@ -1,29 +1,40 @@
 .pp_politique-container strong,
-.pp_title {
+.pp_title,
+section.pp h2 {
     font-weight: 700;
-    font-family: "RobotoFlex", sans-serif !important;
+    font-family: Montserrat, sans-serif !important;
+}
+.pp_politique-container strong,
+.pp_title,
+section.pp h3,
+section.pp li,
+section.pp p {
+    font-family: Montserrat, sans-serif !important;
 }
 .pp_politique-container {
     max-width: 900px;
-    margin: 0 auto;
-    margin-top: 48px;
-    margin-bottom: 96px;
-    padding: 24px 32px 32px 32px;
+    margin: 48px auto;
+    padding: 24px 32px 32px;
     background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 16px;
-    color: #333;
-    font-family: Arial, sans-serif;
+    color: #000;
 }
-.pp_title {
-    font-size: 2rem;
+.pp_politique-container:last-of-type {
+    /* margin: 0px auto 96px; */
+}
+h1.pp_title {
+    font-size: 1.875rem;
     text-align: center;
-    margin: 16px 0 40px 0 !important;
+    color: #000;
+}
+h2.pp_title {
+    font-size: 1.55rem;
+    text-align: center;
+    /* margin: 16px 0 40px !important; */
+    color: #000;
 }
 .pp_section-title {
-    font-size: 1.25rem;
     font-weight: 600;
-
     margin-bottom: 10px;
 }
 .pp_list {
@@ -38,25 +49,20 @@ section.pp {
     display: block !important;
     margin: 24px 0 32px 0 !important;
 }
-section.pp h2 {
+section.pp h3 {
     display: block !important;
-    font-family: "RobotoFlex", sans-serif !important;
     text-align: left !important;
-    margin: 0 0 16px 0 !important;
-    font-size: 1.5rem !important;
-    font-weight: 700;
+    margin: 0 0 16px !important;
+    font-size: 1.25rem !important;
+    color: #000;
+    font-weight: 700 !important;
 }
-section.pp p,
-section.pp li {
+section.pp li,
+section.pp p {
     max-width: inherit !important;
     width: inherit !important;
-    font-family: "RobotoFlex", sans-serif !important;
-    font-size: 1.25rem !important;
+    font-size: 1rem !important;
     line-height: 1.6 !important;
-    margin: 0 !important;
+    /* margin: 0 !important; */
     font-weight: 400;
-}
-
-section.pp {
-    margin: 24px 0 !important;
 }
