@@ -55,10 +55,10 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "/img/about/avatar.svg",
+                url: "/img/about/avatar.webp",
                 width: 225,
                 height: 225,
-                alt: "Photo de Mounir Bouakkaz sur Facebook",
+                alt: "Mounir Bouakkaz, Enseignant de la conduite",
             },
             {
                 url: "https://www.facebook.com/photo/?fbid=122107253852575347&set=a.122098521692575347",

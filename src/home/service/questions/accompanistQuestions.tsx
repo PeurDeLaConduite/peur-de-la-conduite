@@ -12,8 +12,9 @@ const AccQuestions: React.FC = () => {
         supervisedDriving,
     } = useDriving();
 
-    const onAccompanistChange = (value: boolean) => {
-        setIsAccompanist(value);
+    const onAccompanistChange = (value: boolean | null) => {
+        if (value !== null) setIsAccompanist(value);
+        // Sinon, tu ignores le null (aucune maj d'état)
     };
 
     return (

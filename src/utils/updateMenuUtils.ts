@@ -105,17 +105,30 @@ const handleKeyDown = (
 export const useMenuBehavior = () => {
     const navRef = useRef<HTMLElement | null>(null);
     const { openSubMenu, setOpenSubMenu } = useNavigation();
+    const setOpenSubMenuBridge: React.Dispatch<React.SetStateAction<
+        string | null
+    >> = (value) => {
+        if (typeof value === "function") {
+            // Appelle la fonction avec la valeur courante
+            setOpenSubMenu(
+                (value as (prev: string | null) => string | null)(openSubMenu)
+            );
+        } else {
+            setOpenSubMenu(value);
+        }
+    };
     useEffect(() => {
         const onClickOutside = (e: MouseEvent) =>
-            handleClickOutside(e, navRef, setOpenSubMenu);
+            handleClickOutside(e, navRef, setOpenSubMenuBridge);
         const onKeyDown = (e: KeyboardEvent) =>
-            handleKeyDown(e, setOpenSubMenu);
+            handleKeyDown(e, setOpenSubMenuBridge);
         document.addEventListener("mousedown", onClickOutside);
         document.addEventListener("keydown", onKeyDown);
         return () => {
             document.removeEventListener("mousedown", onClickOutside);
             document.removeEventListener("keydown", onKeyDown);
         };
-    }, [setOpenSubMenu]);
-    return { navRef, openSubMenu, setOpenSubMenu };
+    }, [openSubMenu, setOpenSubMenu]); // Ajoute openSubMenu en dépendance
+
+    return { navRef, openSubMenu, setOpenSubMenu: setOpenSubMenuBridge };
 };

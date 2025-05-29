@@ -8,15 +8,16 @@ interface NavLinkProps {
     onNavigationClick: (path: string) => void;
     isOpen: boolean;
     handleMenuClick: (menuItemId: string) => void;
+    svg: SvgComponentKey;
 }
-
+type SvgComponentKey = keyof typeof svgComponents;
 const NavLink: React.FC<NavLinkProps> = ({
     menuItem,
     onNavigationClick,
     isOpen,
     handleMenuClick,
 }) => {
-    const SvgIcon = svgComponents[menuItem.svg];
+    const SvgIcon = svgComponents[menuItem.svg as SvgComponentKey];
 
     return (
         <div className={`group_link-submenu ${menuItem.id}`}>

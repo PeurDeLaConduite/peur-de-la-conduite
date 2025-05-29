@@ -3,6 +3,7 @@ import RenderInputButton from "./RenderInputButton";
 import HiddenDelayComponent from "../utils/HiddenDelayComponent";
 import { getShowClass } from "../utils/menuUtils";
 import { MenuItem } from "../../../assets/data/interfaces/menu";
+import { svgComponents } from "../svgComponents";
 interface RenderInputProps {
     isSubmitted: boolean;
     showNavLinks: boolean;
@@ -19,7 +20,7 @@ interface RenderInputProps {
     handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onFocus: () => void;
 }
-
+export type SvgComponentKey = keyof typeof svgComponents;
 const RenderInput: React.FC<RenderInputProps> = ({
     isSubmitted,
     showNavLinks,
@@ -36,7 +37,7 @@ const RenderInput: React.FC<RenderInputProps> = ({
             <RenderInputButton
                 isSubmitted={isSubmitted}
                 showNavLinks={showNavLinks}
-                menuItem={menuItem}
+                menuItem={{ svg: menuItem.svg as keyof typeof svgComponents }}
                 handleSubmit={handleSubmit}
                 handleReset={handleReset}
             />

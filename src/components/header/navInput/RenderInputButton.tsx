@@ -5,11 +5,12 @@ import SearchClose from "../../svg_Icon/SearchClose";
 interface RenderButtonProps {
     isSubmitted: boolean;
     showNavLinks: boolean;
-    menuItem: { svg: string };
+    menuItem: { svg: SvgComponentKey };
     handleSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
     handleReset: () => void;
 }
 
+type SvgComponentKey = keyof typeof svgComponents;
 const RenderInputButton: React.FC<RenderButtonProps> = ({
     isSubmitted,
     showNavLinks,

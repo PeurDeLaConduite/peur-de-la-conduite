@@ -1,7 +1,13 @@
 import Image from "next/image";
 import React from "react";
 
-const ContactAnnouncement = ({ message }) => {
+interface ContactAnnouncementProps {
+    message: string;
+}
+
+const ContactAnnouncement: React.FC<ContactAnnouncementProps> = ({
+    message,
+}) => {
     return (
         <div className="flx-c ctc-announcement">
             <div className="flx-c">

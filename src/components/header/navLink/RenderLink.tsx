@@ -14,7 +14,7 @@ interface NavLinkShowProps {
     handleMenuClick: (menuItemId: string) => void;
     openMenuId?: string | null;
 }
-
+type SvgComponentKey = keyof typeof svgComponents;
 const RenderLink: React.FC<NavLinkShowProps> = ({
     menuItem,
     onNavigationClick,
@@ -22,7 +22,8 @@ const RenderLink: React.FC<NavLinkShowProps> = ({
     handleMenuClick,
     openMenuId,
 }) => {
-    const SvgIcon = svgComponents[menuItem.svg];
+    const SvgIcon = svgComponents[menuItem.svg as SvgComponentKey];
+
     const { setOpenSubMenu } = useNavigation();
     const handleInteraction = (
         event: React.MouseEvent | React.KeyboardEvent

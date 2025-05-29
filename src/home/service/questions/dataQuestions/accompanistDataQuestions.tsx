@@ -3,7 +3,7 @@ import RadioQuestionForm from "../mapQuestions";
 
 interface DrivingFormProps {
     isAccompanist: boolean | null;
-    onAccompanistChange: (value: boolean) => void;
+    onAccompanistChange: (value: boolean | null) => void;
 }
 
 const AccompanistData: React.FC<DrivingFormProps> = ({

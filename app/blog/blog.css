@@ -1,0 +1,11 @@
+/* blog.css */
+#blog {
+    /* background: #000 !important; */
+}
+.blog-title {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: bold; /* font-bold */
+    margin-bottom: 2rem; /* mb-8 */
+}
+
+

@@ -5,7 +5,7 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
-        "strict": false,
+        "strict": true,
         "noEmit": true,
         "incremental": true,
         "module": "esnext",
@@ -14,12 +14,25 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
+        "strictNullChecks": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./*"],
+            "@app/*": ["app/*"],
+            "@src/*": ["src/*"],
+            "@amplify/*": ["amplify/*"],
+            "@components/*": ["src/components/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@context/*": ["src/context/*"],
+            "@utils/*": ["src/utils/*"],
+            "@types/*": ["src/types/*"],
+            "@public/*": ["public/*"]
+        },
         "plugins": [
             {
                 "name": "next"
             }
-        ],
-        "strictNullChecks": true
+        ]
     },
     "include": [
         "global.d.ts",
@@ -36,6 +49,6 @@
         "src/components/slider/SliderArrow.jsx",
         "src/components/slider/SunBG.tsx",
         "src/utils/useScreenWorker.ts"
-    ],
+, "app/ScrollSectionsWrapper.jsx"    ],
     "exclude": ["node_modules"]
 }
