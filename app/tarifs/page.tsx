@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     title: "Nos Tarifs",
 };
 import TarifsIcon from "../../src/components/svg_Icon/Tarifs";
-import SectionContainer from "../SectionContainer";
+import SectionContainer from "../blog/SectionContainer";
 export default function Page() {
     return (
         <SectionContainer

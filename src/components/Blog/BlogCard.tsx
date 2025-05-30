@@ -3,7 +3,7 @@ import Link from "next/link";
 import VideoEmbed from "./VideoEmbed";
 import ButtonLink from "../button/ButtonLink";
 import { Post, Author } from "@/src/types/blog";
-
+import AuthorSignature from "./AuthorSignature";
 type Props = {
     post: Post;
     author: Author;
@@ -68,27 +68,13 @@ export default function BlogCard({
                         />
                     </div>
                 )}
-                <div
-                    className="blog-card__footer"
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                    }}
-                >
-                    <div className="blog-card__meta">
-                        {author.name},{" "}
-                        {new Date(post.createdAt).toLocaleDateString("fr-FR", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                        })}
-                    </div>
+                <div className="blog-card__footer">
                     <div className="blog-card__link">
                         <ButtonLink href={`/blog/${post.slug}`}>
                             Lire l&apos;article
                         </ButtonLink>
                     </div>
+                    <AuthorSignature author={author} date={post.createdAt} />
                 </div>
             </div>
         </article>

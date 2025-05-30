@@ -1,5 +1,4 @@
 import React from "react";
-
 type SectionContainerProps = {
     children: React.ReactNode;
     id?: string;
@@ -16,6 +15,7 @@ const SectionContainer = React.memo(function SectionContainer({
     return (
         <section className="section page" id={id}>
             <div className="fixed-menu" />
+            
             <div className="container">
                 <div className="page-title">
                     {icon}

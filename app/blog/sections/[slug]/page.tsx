@@ -2,8 +2,8 @@
 import { loadData } from "@/src/utils/blogData/loadData"; // ✅ maintenant externe
 import { Metadata, ResolvingMetadata } from "next";
 import PostContent from "@components/Blog/PostContent";
-import { BackButton } from "@components/button/Buttons";
-import SectionContainer from "@app/SectionContainer";
+import ButtonPage from "@components/Blog/ButtonPage";
+import SectionContainer from "@/app/blog/SectionContainer";
 import BlogIcon from "@components/svg_Icon/Blog";
 export async function generateStaticParams() {
     const { sections } = await loadData();
@@ -60,6 +60,7 @@ export default async function SectionPage({
 
     return (
         <SectionContainer id="blog" title="Blog" icon={<BlogIcon />}>
+            <ButtonPage href="/blog" />
             <div className="section-page section-card">
                 <div className="section-card-header">
                     <h1 className="section-card-title">{section.title}</h1>
@@ -79,14 +80,6 @@ export default async function SectionPage({
                             />
                         );
                     })}
-                </div>
-
-                <div className="section-page__footer">
-                    <BackButton
-                        href="/blog"
-                        label="Retour"
-                        className="section-page__back"
-                    />
                 </div>
             </div>
         </SectionContainer>

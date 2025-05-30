@@ -15,7 +15,6 @@ const Form = ({ formData, errors, handleChange, state }) => {
                 name="prenom"
                 value={formData.prenom}
                 onChange={handleChange}
-                // required
             />
 
             <ValidationError

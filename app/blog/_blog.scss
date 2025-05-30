@@ -51,6 +51,7 @@ $gray-600: #4b5563;
 }
 #blog {
     background: var(--highlight-color) !important;
+    min-height: calc(100vh - 176px);
 }
 .blog-wrapper {
     max-width: 64rem;
@@ -86,6 +87,7 @@ $gray-600: #4b5563;
     &-header {
         background: $blue-50;
         padding: 1rem 1.5rem;
+        border-radius: 1rem 1rem 0 0;
         text-align: left;
         .section-card-title {
             @include bannerH2Bold;
@@ -96,7 +98,6 @@ $gray-600: #4b5563;
         .section-card-desc {
             @include bannerDescribe;
             max-width: inherit;
-            // color: $blue-600;
             line-height: 1.5;
             text-align: left;
             display: inherit;
@@ -135,7 +136,6 @@ $gray-600: #4b5563;
         z-index: 2;
     }
 
-    // Card "faded" (via .is-faded ou via sélecteur parent)
     &.is-faded,
     .blog-list:hover &.blog-card:not(:hover) {
         box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.07);
@@ -144,9 +144,7 @@ $gray-600: #4b5563;
         transition-delay: 0s;
     }
     &__header {
-        margin-bottom: 1rem;
         text-align: left;
-
         display: inherit;
         line-height: 1.5;
     }
@@ -176,11 +174,7 @@ $gray-600: #4b5563;
         p {
         }
     }
-    &__meta {
-        @include navLink;
-        color: $gray-500;
-        text-align: right;
-    }
+
     &__video {
         margin-bottom: 1rem;
         aspect-ratio: 16/9;
@@ -188,14 +182,18 @@ $gray-600: #4b5563;
         overflow: hidden;
     }
     &__footer {
-        margin-top: 1rem;
-        // display: flex;
-        // justify-content: center;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        align-items: flex-end;
+        width: 100%;
+        height: 50px;
+        .post-author__meta {
+            margin: 0 0.15rem;
+        }
     }
     &__link {
         @include navLink;
-        // margin-bottom: 1rem;
-        align-self: center;
         display: inline-block;
     }
 }
@@ -329,7 +327,6 @@ $gray-600: #4b5563;
             color: rgb(26, 109, 229);
             text-align: center;
             margin: 0;
-            // text-wrap: balance;
         }
     }
 
@@ -385,14 +382,12 @@ $gray-600: #4b5563;
         max-width: inherit;
         margin: 0 2rem 0 2rem;
         padding-top: 1rem;
-        // border: 1px solid #000;
         h2 {
             @include bannerH2Bold;
             font-size: 1.75rem;
             max-width: inherit;
             text-align: left;
             display: block;
-            // padding: 1rem 0 !important;
         }
         p,
         li {
@@ -418,7 +413,8 @@ $gray-600: #4b5563;
             margin: 1.5rem 0.75rem 2rem;
         }
     }
-
+}
+.post-author {
     &__meta {
         @include navLink;
         color: $gray-500;
@@ -447,7 +443,6 @@ $gray-600: #4b5563;
             .shadow {
                 border-radius: 50%;
                 filter: drop-shadow(var(--shadow-dark));
-                // background: #000;
             }
         }
     }
@@ -478,9 +473,6 @@ $gray-600: #4b5563;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.7;
-    // h1 {
-    //     @include h2Title;
-    // }
     h2 {
         @include bannerH2Bold;
     }
@@ -564,11 +556,41 @@ $gray-600: #4b5563;
     }
 }
 
-.post-page__footer {
-    text-align: right;
-    margin-bottom: 1.5rem;
+.button-page {
+    position: fixed;
+    left: 0;
+    // right: 16px;
+    z-index: 10;
+    top: 143px;
+    margin: 0 auto;
+    // background: #000000;
+    width: calc(100%);
+    .center-fixed {
+        max-width: 1200px;
+        width: calc(100% - 64px);
+        // display: inline-block;
+        margin: auto;
+
+        // border: 20px solid #00ff91;
+        position: relative;
+    }
+    .button-page__back {
+        @include buttonText;
+        border: 2px solid #ffffff;
+        background: rgb(26, 109, 229);
+        right: -24px;
+        float: right;
+        filter: drop-shadow(var(--shadow-dark));
+        &:hover {
+            background: var(--primary-color);
+            svg {
+                filter: drop-shadow(var(--shadow-dark));
+            }
+        }
+    }
 }
-.post-page__back {
-    @include buttonText;
-    display: inline-block;
-}
+// .post-page__back {
+//     @include buttonText;
+//     position: fixed;
+//     display: inline-block;
+// }

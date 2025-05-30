@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 };
 import React from "react";
 import ServicesIcon from "../../src/components/svg_Icon/Services";
-import SectionContainer from "../SectionContainer";
+import SectionContainer from "../blog/SectionContainer";
 export default function Page() {
     return (
         <SectionContainer

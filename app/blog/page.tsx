@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Blog",
 };
-import SectionContainer from "../SectionContainer";
+import SectionContainer from "./SectionContainer";
 import BlogClientWrapper from "./BlogClientWrapper";
 import BlogIcon from "@components/svg_Icon/Blog";
 export default function Page() {

@@ -8,7 +8,7 @@ type Props = {
     searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 import { loadData } from "@/src/utils/blogData/loadData";
-import SectionContainer from "@app/SectionContainer";
+import SectionContainer from "@/app/blog/SectionContainer";
 import BlogIcon from "@components/svg_Icon/Blog";
 export async function generateStaticParams() {
     const { posts } = await fetchBlogData();
