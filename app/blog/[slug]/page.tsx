@@ -4,8 +4,7 @@ import SectionContainer from "@/app/blog/SectionContainer";
 import BlogIcon from "@components/svg_Icon/Blog";
 import { notFound } from "next/navigation";
 import PostClient from "./PostClient";
-import { BackButton } from "@/src/components/button/Buttons";
-
+import ButtonPage from "@components/Blog/ButtonPage";
 export async function generateStaticParams() {
     const { posts } = await loadData();
     return posts.map(({ slug }) => ({ slug }));
@@ -46,14 +45,8 @@ export default async function PostPage({
 
     return (
         <SectionContainer id="blog" title="Blog" icon={<BlogIcon />}>
+            <ButtonPage href="/blog" />
             <PostClient post={post} sections={sections} authors={authors} />
-            <div className="post-page__footer">
-                <BackButton
-                    href="/blog"
-                    label="Retour"
-                    className="post-page__back"
-                />
-            </div>
         </SectionContainer>
     );
 }
