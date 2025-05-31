@@ -54,4 +54,4 @@ const AuthorSignature: React.FC<AuthorSignatureProps> = ({
     </div>
 );
 
-export default AuthorSignature;
+export default React.memo(AuthorSignature);

@@ -43,9 +43,16 @@ function getTikTokId(url?: string): string | null {
 type Props = {
     url?: string;
     title?: string;
+    iframeAllow?: string | false;
+    iframeTabIndex?: number | false;
 };
 
-const VideoEmbed: React.FC<Props> = ({ url, title }) => {
+const VideoEmbed: React.FC<Props> = ({
+    url,
+    title,
+    iframeAllow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+    iframeTabIndex = 0,
+}) => {
     const ytId = getYouTubeId(url);
     const tkId = getTikTokId(url);
     const isShort = isYoutubeShort(url);
@@ -70,9 +77,12 @@ const VideoEmbed: React.FC<Props> = ({ url, title }) => {
                 <iframe
                     className="video-embed__iframe"
                     src={`https://www.youtube.com/embed/${ytId}?playsinline=1`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    {...(iframeAllow !== false ? { allow: iframeAllow } : {})}
                     allowFullScreen
                     title={title || "YouTube video"}
+                    {...(iframeTabIndex !== false
+                        ? { tabIndex: iframeTabIndex }
+                        : {})}
                 />
             </div>
         );
@@ -94,4 +104,4 @@ const VideoEmbed: React.FC<Props> = ({ url, title }) => {
     return null;
 };
 
-export default VideoEmbed;
+export default React.memo(VideoEmbed);

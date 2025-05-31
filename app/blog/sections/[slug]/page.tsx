@@ -1,13 +1,14 @@
-// app/blog/sections/[slug]/page.tsx
-import { loadData } from "@/src/utils/blogData/loadData"; // ✅ maintenant externe
-import { Metadata, ResolvingMetadata } from "next";
-import PostContent from "@components/Blog/PostContent";
-import ButtonPage from "@components/Blog/ButtonPage";
+import { loadData } from "@/src/utils/blogData/loadData";
+import SectionClient from "./SectionClient";
+import { notFound } from "next/navigation";
 import SectionContainer from "@/app/blog/SectionContainer";
 import BlogIcon from "@components/svg_Icon/Blog";
+import ButtonPage from "@components/Blog/ButtonPage";
+import { Metadata, ResolvingMetadata } from "next";
+
 export async function generateStaticParams() {
     const { sections } = await loadData();
-    return sections.map((section) => ({ slug: section.slug }));
+    return sections.map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata(
@@ -17,7 +18,9 @@ export async function generateMetadata(
     const { slug } = await params;
     const { sections, posts } = await loadData();
 
-    const section = sections.find((s) => s.slug === slug)!;
+    const section = sections.find((s) => s.slug === slug);
+    if (!section) throw new Error(`Section not found for slug: ${slug}`);
+
     const seo = section.seo ?? {
         title: section.title,
         description: section.description,
@@ -51,37 +54,13 @@ export default async function SectionPage({
 }) {
     const { slug } = await params;
     const { sections, posts, authors } = await loadData();
-
-    const section = sections.find((s) => s.slug === slug)!;
-    const postsInSection = posts.filter(
-        (post) =>
-            post.status === "published" && post.sectionIds.includes(section.id)
-    );
+    const section = sections.find((s) => s.slug === slug);
+    if (!section) return notFound();
 
     return (
         <SectionContainer id="blog" title="Blog" icon={<BlogIcon />}>
             <ButtonPage href="/blog" />
-            <div className="section-page section-card">
-                <div className="section-card-header">
-                    <h1 className="section-card-title">{section.title}</h1>
-                    <p className="section-card-desc">{section.description}</p>
-                </div>
-
-                <div className="section-page__posts">
-                    {postsInSection.map((post) => {
-                        const author = authors.find(
-                            (a) => a.id === post.authorId
-                        )!;
-                        return (
-                            <PostContent
-                                key={post.id}
-                                post={post}
-                                author={author}
-                            />
-                        );
-                    })}
-                </div>
-            </div>
+            <SectionClient section={section} posts={posts} authors={authors} />
         </SectionContainer>
     );
 }

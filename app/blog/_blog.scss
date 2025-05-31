@@ -20,12 +20,13 @@
     $border-radius: 1rem,
     $border: 1px solid $border-color,
     $padding: 1.5rem,
-    $box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.28),
+    $box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25),
     $transition: (
-        box-shadow 0.34s cubic-bezier(0.4, 2, 0.6, 1),
-        transform 0.34s cubic-bezier(0.4, 2, 0.6, 1),
-        opacity 0.34s cubic-bezier(0.4, 2, 0.6, 1),
-        filter 0.34s cubic-bezier(0.4, 2, 0.6, 1),
+        box-shadow 0.34s cubic-bezier(0.42, 0, 0.58, 1),
+        text-shadow 0.34s cubic-bezier(0.42, 0, 0.58, 1),
+        transform 0.34s cubic-bezier(0.42, 0, 0.58, 1),
+        opacity 0.34s cubic-bezier(0.42, 0, 0.58, 1),
+        filter 0.34s cubic-bezier(0.42, 0, 0.58, 1),
     )
 ) {
     background: $bg;
@@ -52,6 +53,11 @@ $gray-600: #4b5563;
 #blog {
     background: var(--highlight-color) !important;
     min-height: calc(100vh - 176px);
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
 }
 .blog-wrapper {
     max-width: 64rem;
@@ -59,19 +65,6 @@ $gray-600: #4b5563;
     padding: 3rem 1rem;
 }
 
-.blog-page__refresh {
-    margin-bottom: 1.5rem;
-    @include buttonText;
-    background: $blue-600;
-    border-radius: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-    &:hover {
-        background: $blue-700;
-    }
-}
 .section-card {
     filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.5));
     margin: 3rem 104px 0 104px;
@@ -121,12 +114,94 @@ $gray-600: #4b5563;
         flex-flow: column wrap;
     }
 }
+.blog-card:focus {
+    outline: 2px solid rgb(255, 0, 0);
+}
+// .blog-card {
+//     @include cardBase();
+
+//     width: 100%;
+
+//     &:hover,
+//     &:focus,
+//     &.is-hovered {
+//         box-shadow: 0px 8px 32px rgba(26, 109, 229, 0.22),
+//             0 1.5px 9px 0 rgba(30, 30, 30, 0.4);
+//         transform: scale(1.015);
+//         opacity: 1;
+//         filter: none;
+//         z-index: 2;
+//     }
+
+//     &.is-faded,
+//     .blog-list:hover &.blog-card:not(:hover):not(:focus):not(.is-hovered) {
+//         box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.07);
+//         transform: scale(0.985);
+//         z-index: 1;
+//         transition-delay: 0s;
+//     }
+//     &__header {
+//         text-align: left;
+//         display: inherit;
+//         line-height: 1.5;
+//     }
+//     &__title {
+//         @include bannerH2Bold;
+//         font-size: 1.75rem;
+
+//         margin-bottom: 1rem;
+//         padding-bottom: 1rem;
+//         border-bottom: 1px solid #e5e7eb;
+//         a {
+//             color: $blue-700 !important;
+//         }
+//     }
+//     &__excerpt {
+//         @include bannerDescribe;
+//         margin-bottom: 0.5rem;
+//         font-size: 1.5rem;
+//         display: -webkit-box;
+//         -webkit-line-clamp: 4; // Limite à 4 lignes, change selon besoin
+//         -webkit-box-orient: vertical;
+//         overflow: hidden;
+//         text-overflow: ellipsis;
+//         height: auto; // Auto, sauf si tu veux une hauteur stricte (peu conseillé)
+//         min-height: 60px; // Optionnel : pour garder une base visuelle régulière
+
+//         p {
+//         }
+//     }
+
+//     &__video {
+//         margin-bottom: 1rem;
+//         aspect-ratio: 16/9;
+//         border-radius: 0.5rem;
+//         overflow: hidden;
+//     }
+//     &__footer {
+//         display: inline-flex;
+//         justify-content: space-between;
+//         align-items: center;
+//         align-items: flex-end;
+//         width: 100%;
+//         height: 50px;
+//         .post-author__meta {
+//             margin: 0 0.15rem;
+//         }
+//     }
+//     &__link {
+//         @include navLink;
+//         display: inline-block;
+//     }
+// }
+
 .blog-card {
     @include cardBase();
 
     width: 100%;
 
     &:hover,
+    &:focus,
     &.is-hovered {
         box-shadow: 0px 8px 32px rgba(26, 109, 229, 0.22),
             0 1.5px 9px 0 rgba(30, 30, 30, 0.4);
@@ -134,15 +209,31 @@ $gray-600: #4b5563;
         opacity: 1;
         filter: none;
         z-index: 2;
+        .blog-card__title {
+            // background: $green;
+            // background: black;
+            box-shadow: var(--shadow-dark), inset var(--shadow-light);
+            border: none;
+            background: $primary-blue;
+            &::after {
+                opacity: 1;
+            }
+            a {
+                // color: $blue-700 !important;
+                // text-decoration: underline;
+
+                // text-shadow: none;
+            }
+        }
     }
 
     &.is-faded,
-    .blog-list:hover &.blog-card:not(:hover) {
+    .blog-list:hover &.blog-card:not(:hover):not(:focus):not(.is-hovered) {
         box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.07);
         transform: scale(0.985);
         z-index: 1;
-        transition-delay: 0s;
     }
+
     &__header {
         text-align: left;
         display: inherit;
@@ -151,12 +242,44 @@ $gray-600: #4b5563;
     &__title {
         @include bannerH2Bold;
         font-size: 1.75rem;
-
         margin-bottom: 1rem;
-        padding-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 0.5rem 0.5rem 0 0;
+        text-wrap: balance;
+        text-align: center;
         border-bottom: 1px solid #e5e7eb;
+        z-index: 1;
+        // background: $blue-700;
+        // box-shadow: inset var(--shadow-dark);
+
+        box-shadow: inset 0px 8px 32px rgba(26, 109, 229, 0.22),
+            inset 0 1.5px 9px 0 rgba(30, 30, 30, 0.4);
+
+        position: relative;
+        background: var(--highlight-color);
+        background: var(--primary-color);
+        background: $secondary-blue;
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            z-index: -1;
+            opacity: 0;
+            // transition: opacity 225ms ease, transform 450ms ease;
+            background: linear-gradient(
+                145deg,
+                rgba(0, 158, 226, 0.5),
+                rgba(0, 0, 0, 0.2)
+            );
+            will-change: transform, opacity;
+        }
         a {
-            color: $blue-700 !important;
+            // color: $blue-700 !important;
+            color: white !important;
+            // color: rgb(0, 0, 0) !important;
+            text-shadow: var(--shadow-dark);
+            text-wrap: balance;
         }
     }
     &__excerpt {
@@ -170,34 +293,41 @@ $gray-600: #4b5563;
         text-overflow: ellipsis;
         height: auto; // Auto, sauf si tu veux une hauteur stricte (peu conseillé)
         min-height: 60px; // Optionnel : pour garder une base visuelle régulière
-
-        p {
-        }
     }
 
     &__video {
         margin-bottom: 1rem;
-        aspect-ratio: 16/9;
+        // aspect-ratio: 16/9;
         border-radius: 0.5rem;
         overflow: hidden;
     }
+
     &__footer {
-        display: inline-flex;
+        display: flex; // préférable à inline-flex pour 100% width
         justify-content: space-between;
-        align-items: center;
         align-items: flex-end;
         width: 100%;
         height: 50px;
+        // opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.18s cubic-bezier(0.5, 0, 0.5, 1);
         .post-author__meta {
             margin: 0 0.15rem;
         }
     }
+    // Affichage du footer au hover/focus/.is-hovered
+    &:hover &__footer,
+    &:focus &__footer,
+    &.is-hovered &__footer {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
     &__link {
         @include navLink;
         display: inline-block;
     }
 }
-
 .blog-list {
     display: grid;
     gap: 1.5rem;

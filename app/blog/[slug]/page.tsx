@@ -1,61 +1,52 @@
-// app/blog/[slug]/page.tsx
-import { fetchBlogData } from "@/src/utils/blogData/fetchData";
-import { Metadata, ResolvingMetadata } from "next";
-import Blog from "@components/Blog/Blog";
-import { BackButton } from "@/src/components/button/Buttons";
-type Props = {
-    params: Promise<{ slug: string }>;
-    searchParams: Promise<Record<string, string | string[] | undefined>>;
-};
 import { loadData } from "@/src/utils/blogData/loadData";
+import { Metadata, ResolvingMetadata } from "next";
 import SectionContainer from "@/app/blog/SectionContainer";
 import BlogIcon from "@components/svg_Icon/Blog";
+import { notFound } from "next/navigation";
+import PostClient from "./PostClient";
+import { BackButton } from "@/src/components/button/Buttons";
+
 export async function generateStaticParams() {
-    const { posts } = await fetchBlogData();
-    return posts.map((p) => ({ slug: p.slug }));
+    const { posts } = await loadData();
+    return posts.map(({ slug }) => ({ slug }));
 }
+
 export async function generateMetadata(
-    { params }: Props,
+    { params }: { params: Promise<{ slug: string }> },
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    // 1) await les params (Next 15 les rend asynchrones)
     const { slug } = await params;
-
-    // 2) chargez vos données
     const { posts } = await loadData();
-    const post = posts.find((p) => p.slug === slug)!;
+    const post = posts.find((p) => p.slug === slug);
+    if (!post) throw new Error(`Post not found for slug: ${slug}`);
 
-    // 3) vous pouvez étendre le metadata parent si besoin
     const parentMeta = await parent;
     const previousImages = parentMeta.openGraph?.images || [];
 
     return {
-        title: post.seo.title,
-        description: post.seo.description,
+        title: post.seo?.title ?? post.title,
+        description: post.seo?.description ?? post.excerpt,
         openGraph: {
-            images: post.seo.image
+            images: post.seo?.image
                 ? [post.seo.image, ...previousImages]
                 : previousImages,
         },
     };
 }
 
-// 4) Page component — `params` est une Promise
 export default async function PostPage({
     params,
 }: {
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-
-    // ❗️ ici aussi tu avais oublié `await`
     const { sections, posts, authors } = await loadData();
-
-    const post = posts.find((p) => p.slug === slug)!;
+    const post = posts.find((p) => p.slug === slug);
+    if (!post) return notFound();
 
     return (
         <SectionContainer id="blog" title="Blog" icon={<BlogIcon />}>
-            <Blog data={{ sections, posts, authors }} singlePost={post} />
+            <PostClient post={post} sections={sections} authors={authors} />
             <div className="post-page__footer">
                 <BackButton
                     href="/blog"

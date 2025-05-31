@@ -1,28 +1,37 @@
-// src/context/DataBlogContext.tsx
 "use client";
-
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    ReactNode,
+    useMemo,
+} from "react";
 import type { BlogData } from "@src/types/blog";
 
-// URL publique configurée en .env.local
 const PUBLIC_DATA_URL =
+    process.env.NEXT_PUBLIC_BLOGDATA_URL ||
     "https://amplify-d2jefuxcjjakai-ma-publiquestoragebucketac0-tjlluvtci6g6.s3.eu-west-3.amazonaws.com/publique-storage/data.json";
 
 interface DataBlogContextProps {
     data: BlogData | null;
     loading: boolean;
     error: Error | null;
-    refresh: () => Promise<void>;
 }
 
 const DataBlogContext = createContext<DataBlogContextProps | undefined>(undefined);
 
-export function DataBlogProvider({ children }: { children: ReactNode }) {
-    const [data, setData] = useState<BlogData | null>(null);
-    const [loading, setLoading] = useState(true);
+export function DataBlogProvider({
+    children,
+    initialData = null,
+}: {
+    children: ReactNode;
+    initialData?: BlogData | null;
+}) {
+    const [data, setData] = useState<BlogData | null>(initialData);
+    const [loading, setLoading] = useState(!initialData);
     const [error, setError] = useState<Error | null>(null);
 
-    // Charge le JSON depuis l’URL publique
     async function fetchData() {
         try {
             setLoading(true);
@@ -31,20 +40,31 @@ export function DataBlogProvider({ children }: { children: ReactNode }) {
             const json = (await res.json()) as BlogData;
             setData(json);
             setError(null);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (err: any) {
-            setError(err);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err);
+            } else {
+                setError(new Error("Erreur inconnue"));
+            }
         } finally {
             setLoading(false);
         }
     }
+    
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (!initialData) {
+            fetchData();
+        }
+    }, [initialData]);
+
+    const value = useMemo(
+        () => ({ data, loading, error }),
+        [data, loading, error]
+    );
 
     return (
-        <DataBlogContext.Provider value={{ data, loading, error, refresh: fetchData }}>
+        <DataBlogContext.Provider value={value}>
             {children}
         </DataBlogContext.Provider>
     );

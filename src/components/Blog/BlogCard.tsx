@@ -1,3 +1,4 @@
+import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import VideoEmbed from "./VideoEmbed";
@@ -11,15 +12,19 @@ type Props = {
     faded?: boolean;
     onHover?: () => void;
     onUnhover?: () => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
 };
 
-export default function BlogCard({
+function BlogCard({
     post,
     author,
     hovered,
     faded,
     onHover,
     onUnhover,
+    onFocus,
+    onBlur,
 }: Props) {
     const router = useRouter();
 
@@ -46,13 +51,15 @@ export default function BlogCard({
             className={`blog-card${hovered ? " is-hovered" : ""}${
                 faded ? " is-faded" : ""
             }`}
-            tabIndex={0}
             aria-label={`Voir l'article : ${post.title}`}
             style={{ cursor: "pointer" }}
             onClick={handleCardClick}
             onKeyDown={handleKeyDown}
             onMouseEnter={onHover}
             onMouseLeave={onUnhover}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            tabIndex={0}
         >
             <div className="blog-card__header">
                 <h3 className="blog-card__title">
@@ -65,6 +72,8 @@ export default function BlogCard({
                         <VideoEmbed
                             url={post.videoUrl}
                             title={`Vidéo de ${post.title}`}
+                            iframeAllow={false}
+                            iframeTabIndex={-1}
                         />
                     </div>
                 )}
@@ -80,3 +89,5 @@ export default function BlogCard({
         </article>
     );
 }
+// En toute fin de fichier :
+export default React.memo(BlogCard);

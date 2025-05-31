@@ -8,7 +8,7 @@ type Props = {
     authors: Author[];
 };
 
-export default function BlogList({ posts, authors }: Props) {
+function BlogList({ posts, authors }: Props) {
     const [hovered, setHovered] = useState<string | null>(null);
     return (
         <div className="blog-list">
@@ -23,9 +23,12 @@ export default function BlogList({ posts, authors }: Props) {
                         faded={hovered !== null && hovered !== post.id}
                         onHover={() => setHovered(post.id)}
                         onUnhover={() => setHovered(null)}
+                        onFocus={() => setHovered(post.id)}
+                        onBlur={() => setHovered(null)}
                     />
                 );
             })}
         </div>
     );
 }
+export default React.memo(BlogList);
