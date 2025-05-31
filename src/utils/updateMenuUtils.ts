@@ -122,13 +122,14 @@ export const useMenuBehavior = () => {
             handleClickOutside(e, navRef, setOpenSubMenuBridge);
         const onKeyDown = (e: KeyboardEvent) =>
             handleKeyDown(e, setOpenSubMenuBridge);
+
         document.addEventListener("mousedown", onClickOutside);
         document.addEventListener("keydown", onKeyDown);
         return () => {
             document.removeEventListener("mousedown", onClickOutside);
             document.removeEventListener("keydown", onKeyDown);
         };
-    }, [openSubMenu, setOpenSubMenu]); // Ajoute openSubMenu en dépendance
+    }, [openSubMenu, setOpenSubMenu, setOpenSubMenuBridge]);
 
     return { navRef, openSubMenu, setOpenSubMenu: setOpenSubMenuBridge };
 };

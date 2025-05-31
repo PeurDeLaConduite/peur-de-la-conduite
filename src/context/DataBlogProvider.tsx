@@ -1,3 +1,4 @@
+// src/context/DataBlogContext.tsx
 "use client";
 import React, {
     createContext,
@@ -32,30 +33,35 @@ export function DataBlogProvider({
     const [loading, setLoading] = useState(!initialData);
     const [error, setError] = useState<Error | null>(null);
 
-    async function fetchData() {
+    function isEqual(a: BlogData | null, b: BlogData | null) {
+        return JSON.stringify(a) === JSON.stringify(b);
+    }
+
+    const fetchData = async () => {
         try {
             setLoading(true);
-            const res = await fetch(PUBLIC_DATA_URL);
+            const res = await fetch(PUBLIC_DATA_URL + "?t=" + Date.now(), { cache: "no-store" });
             if (!res.ok) throw new Error(`Erreur fetch : ${res.status}`);
             const json = (await res.json()) as BlogData;
-            setData(json);
+            if (!isEqual(json, data)) {
+                setData(json);
+            }
             setError(null);
         } catch (err: unknown) {
-            if (err instanceof Error) {
-                setError(err);
-            } else {
-                setError(new Error("Erreur inconnue"));
-            }
+            if (err instanceof Error) setError(err);
+            else setError(new Error("Erreur inconnue"));
         } finally {
             setLoading(false);
         }
-    }
-    
+    };
 
     useEffect(() => {
         if (!initialData) {
             fetchData();
+        } else if (initialData && !isEqual(initialData, data)) {
+            setData(initialData);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [initialData]);
 
     const value = useMemo(
