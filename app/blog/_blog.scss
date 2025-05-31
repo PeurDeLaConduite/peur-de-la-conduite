@@ -74,7 +74,24 @@ $gray-600: #4b5563;
     transition: box-shadow 0.2s;
     display: flex;
     flex-flow: column wrap;
-    &:hover {
+    &:hover,
+    &:not(:hover),
+    &:focus,
+    &:not(:focus),
+    &:not(.is-hovered),
+    &:not(.is-faded) {
+        z-index: 1;
+        opacity: 1;
+        .blog-card__title,
+        .blog-card__footer,
+        .section-card-link,
+        .blog-card__link {
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+    &:hover,
+    &:focus {
         filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.75));
     }
     &-header {
@@ -117,83 +134,6 @@ $gray-600: #4b5563;
 .blog-card:focus {
     outline: 2px solid rgb(255, 0, 0);
 }
-// .blog-card {
-//     @include cardBase();
-
-//     width: 100%;
-
-//     &:hover,
-//     &:focus,
-//     &.is-hovered {
-//         box-shadow: 0px 8px 32px rgba(26, 109, 229, 0.22),
-//             0 1.5px 9px 0 rgba(30, 30, 30, 0.4);
-//         transform: scale(1.015);
-//         opacity: 1;
-//         filter: none;
-//         z-index: 2;
-//     }
-
-//     &.is-faded,
-//     .blog-list:hover &.blog-card:not(:hover):not(:focus):not(.is-hovered) {
-//         box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.07);
-//         transform: scale(0.985);
-//         z-index: 1;
-//         transition-delay: 0s;
-//     }
-//     &__header {
-//         text-align: left;
-//         display: inherit;
-//         line-height: 1.5;
-//     }
-//     &__title {
-//         @include bannerH2Bold;
-//         font-size: 1.75rem;
-
-//         margin-bottom: 1rem;
-//         padding-bottom: 1rem;
-//         border-bottom: 1px solid #e5e7eb;
-//         a {
-//             color: $blue-700 !important;
-//         }
-//     }
-//     &__excerpt {
-//         @include bannerDescribe;
-//         margin-bottom: 0.5rem;
-//         font-size: 1.5rem;
-//         display: -webkit-box;
-//         -webkit-line-clamp: 4; // Limite à 4 lignes, change selon besoin
-//         -webkit-box-orient: vertical;
-//         overflow: hidden;
-//         text-overflow: ellipsis;
-//         height: auto; // Auto, sauf si tu veux une hauteur stricte (peu conseillé)
-//         min-height: 60px; // Optionnel : pour garder une base visuelle régulière
-
-//         p {
-//         }
-//     }
-
-//     &__video {
-//         margin-bottom: 1rem;
-//         aspect-ratio: 16/9;
-//         border-radius: 0.5rem;
-//         overflow: hidden;
-//     }
-//     &__footer {
-//         display: inline-flex;
-//         justify-content: space-between;
-//         align-items: center;
-//         align-items: flex-end;
-//         width: 100%;
-//         height: 50px;
-//         .post-author__meta {
-//             margin: 0 0.15rem;
-//         }
-//     }
-//     &__link {
-//         @include navLink;
-//         display: inline-block;
-//     }
-// }
 
 .blog-card {
     @include cardBase();
