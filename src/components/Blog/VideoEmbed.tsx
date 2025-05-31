@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { Suspense, lazy, useState } from "react";
+import Loader from "../loader/Loader";
 
 function getYouTubeId(url?: string): string | null {
     if (typeof url !== "string") return null;
@@ -32,13 +33,7 @@ function isYoutubeShort(url?: string) {
     }
 }
 
-function getTikTokId(url?: string): string | null {
-    if (typeof url !== "string") return null;
-    const m = url.match(
-        /(?:tiktok\.com\/@[^/]+\/video\/|vm\.tiktok\.com\/)(\d+)/
-    );
-    return m?.[1] ?? null;
-}
+const YouTubeIframe = lazy(() => import("./YouTubeIframe"));
 
 type Props = {
     url?: string;
@@ -50,54 +45,47 @@ type Props = {
 const VideoEmbed: React.FC<Props> = ({
     url,
     title,
-    iframeAllow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    iframeTabIndex = 0,
+    iframeAllow,
+    iframeTabIndex,
 }) => {
     const ytId = getYouTubeId(url);
-    const tkId = getTikTokId(url);
     const isShort = isYoutubeShort(url);
-
-    useEffect(() => {
-        if (!tkId) return;
-        const SCRIPT_ID = "__tiktok-embed-js";
-        if (!document.getElementById(SCRIPT_ID)) {
-            const s = document.createElement("script");
-            s.id = SCRIPT_ID;
-            s.src = "https://www.tiktok.com/embed.js";
-            s.async = true;
-            document.body.appendChild(s);
-        }
-    }, [tkId]);
+    const [iframeLoaded, setIframeLoaded] = useState(false);
 
     if (ytId) {
         return (
             <div
                 className={`video-embed${isShort ? " video-embed--short" : ""}`}
+                style={{ position: "relative" }}
             >
-                <iframe
-                    className="video-embed__iframe"
-                    src={`https://www.youtube.com/embed/${ytId}?playsinline=1`}
-                    {...(iframeAllow !== false ? { allow: iframeAllow } : {})}
-                    allowFullScreen
-                    title={title || "YouTube video"}
-                    {...(iframeTabIndex !== false
-                        ? { tabIndex: iframeTabIndex }
-                        : {})}
-                />
+                {!iframeLoaded && (
+                    <div
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: "#000",
+                            zIndex: 2,
+                        }}
+                    >
+                        <Loader />
+                    </div>
+                )}
+                <Suspense fallback={null}>
+                    <YouTubeIframe
+                        ytId={ytId}
+                        title={title}
+                        iframeAllow={iframeAllow}
+                        iframeTabIndex={iframeTabIndex}
+                        onLoad={() => setIframeLoaded(true)}
+                    />
+                </Suspense>
             </div>
-        );
-    }
-
-    if (tkId) {
-        return (
-            <blockquote
-                className="tiktok-embed"
-                cite={url}
-                data-video-id={tkId}
-                style={{ maxWidth: 605, minWidth: 325 }}
-            >
-                <section>Chargement de la vidéo TikTok…</section>
-            </blockquote>
         );
     }
 

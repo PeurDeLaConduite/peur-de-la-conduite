@@ -8,7 +8,7 @@ import HeaderProps from "./headerProps";
 import { ScrollProvider } from "../src/utils/context/ScrollContext";
 import ScrollSectionsWrapper from "./ScrollSectionsWrapper";
 import Footer from "../src/components/footer/footer"
-
+import Loader from "@/src/components/loader/Loader";
 export const RobotoFlex = localFont({
     src: "/fonts/RobotoFlex.woff2",
     variable: "--RobotoFlex",
@@ -182,7 +182,7 @@ export default function RootLayout({
                     <ScrollSectionsWrapper>
                         <SearchProvider>
                             <DrivingProvider>
-                                <Suspense fallback={<div>Chargement du header...</div>}>
+                                <Suspense fallback={<Loader/>}>
                                     <header>
                                         <div className="content-wrapper">
                                             <HeaderProps />
