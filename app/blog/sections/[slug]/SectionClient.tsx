@@ -2,7 +2,7 @@
 "use client";
 import { useMemo } from "react";
 import PostContent from "@components/Blog/PostContent";
-import type { Section, Post, Author } from "@src/types/blog";
+import { Section, Post, Author } from "@src/types/blog";
 
 type Props = {
     section: Section;
@@ -27,21 +27,23 @@ export default function SectionClient({ section, posts, authors }: Props) {
                 <h1 className="section-card-title">{section.title}</h1>
                 <p className="section-card-desc">{section.description}</p>
             </div>
-
-            <div className="section-page__posts">
-                {postsInSection.map((post) => {
-                    const author = authors.find((a) => a.id === post.authorId);
-                    if (!author) return null;
-                    return (
-                        <PostContent
-                            key={post.id}
-                            post={post}
-                            author={author}
-                        />
-                    );
-                })}
+            <div className="section-blog_bg">
+                <div className="section-page__posts">
+                    {postsInSection.map((post) => {
+                        const author = authors.find(
+                            (a) => a.id === post.authorId
+                        );
+                        if (!author) return null;
+                        return (
+                            <PostContent
+                                key={post.id}
+                                post={post}
+                                author={author}
+                            />
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
 }
-

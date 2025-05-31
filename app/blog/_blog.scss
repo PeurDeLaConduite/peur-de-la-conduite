@@ -241,10 +241,17 @@ $gray-600: #4b5563;
     }
 
     &__video {
-        margin-bottom: 1rem;
+        margin: 1rem 0;
         // aspect-ratio: 16/9;
-        border-radius: 0.5rem;
+        border-radius: 0.75rem;
         overflow: hidden;
+        box-shadow: var(--shadow-dark);
+        border: 4px solid #ffffff;
+        background: transparent;
+        .video-embed {
+            margin: 0 auto !important;
+            background: transparent;
+        }
     }
 
     &__footer {
@@ -322,7 +329,19 @@ $gray-600: #4b5563;
         }
     }
 }
-
+.section-page.section-card {
+    background: #eff6ff;
+    .section-card-header {
+        background: #eff6ff;
+        border-radius: 0.5rem 0.5rem 0 0;
+        background: transparent;
+        padding-bottom: 2rem;
+    }
+    .section-blog_bg {
+        padding: 0 2px;
+        width: 100%;
+    }
+}
 /*
 
     .video-embed {
