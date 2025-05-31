@@ -48,8 +48,8 @@ function BlogCard({
 
     return (
         <article
-            className={`blog-card${hovered ? " is-hovered" : ""}${
-                faded ? " is-faded" : ""
+            className={`blog-card${hovered ? " cardHovered" : ""}${
+                faded ? " cardFaded" : ""
             }`}
             aria-label={`Voir l'article : ${post.title}`}
             style={{ cursor: "pointer" }}
