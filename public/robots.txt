@@ -6,10 +6,8 @@ Disallow: /app/fonts/
 Disallow: /public/css/
 
 # Bloquer uniquement les pages sans contenu
-Disallow: /blog
 Disallow: /reservation
 Disallow: /mentions-legales
-Disallow: /informations-legales
 
 # Optionnel : blocage d'états transitoires (chargement, erreur)
 Disallow: /*/loading

@@ -9,9 +9,6 @@ type Props = {
 };
 
 export default function PostClient({ post, sections, authors }: Props) {
-    // Ici, tu peux utiliser tous tes hooks React si besoin
-    // Tu peux aussi encapsuler dans un provider si tu veux
-
     return (
         <Blog data={{ sections, posts: [post], authors }} singlePost={post} />
     );

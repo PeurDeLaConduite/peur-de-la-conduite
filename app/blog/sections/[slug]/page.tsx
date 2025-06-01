@@ -1,16 +1,15 @@
-import { loadData } from "@/src/utils/blogData/loadData";
-import SectionClient from "./SectionClient";
-import { notFound } from "next/navigation";
+// app/blog/sections/[slug]/page.tsx
+import { loadData } from "@/src/utils/blogData/loadData"; // ✅ maintenant externe
+import { Metadata, ResolvingMetadata } from "next";
+import ButtonPage from "@components/Blog/ButtonPage";
 import SectionContainer from "@/app/blog/SectionContainer";
 import BlogIcon from "@components/svg_Icon/Blog";
-import ButtonPage from "@components/Blog/ButtonPage";
-import { Metadata, ResolvingMetadata } from "next";
-
 export async function generateStaticParams() {
     const { sections } = await loadData();
     return sections.map(({ slug }) => ({ slug }));
 }
-
+import SectionClient from "./SectionClient";
+import { notFound } from "next/navigation";
 export async function generateMetadata(
     { params }: { params: Promise<{ slug: string }> },
     parent: ResolvingMetadata

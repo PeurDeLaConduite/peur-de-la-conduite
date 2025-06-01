@@ -11,6 +11,7 @@ import React, {
 import type { BlogData } from "@src/types/blog";
 
 const PUBLIC_DATA_URL =
+    process.env.NEXT_PUBLIC_BLOGDATA_URL ||
     "https://amplify-d2jefuxcjjakai-ma-publiquestoragebucketac0-tjlluvtci6g6.s3.eu-west-3.amazonaws.com/publique-storage/data.json";
 
 interface DataBlogContextProps {
@@ -21,32 +22,47 @@ interface DataBlogContextProps {
 
 const DataBlogContext = createContext<DataBlogContextProps | undefined>(undefined);
 
-export function DataBlogProvider({ children }: { children: ReactNode }) {
-    const [data, setData] = useState<BlogData | null>(null);
-    const [loading, setLoading] = useState(true);
+export function DataBlogProvider({
+    children,
+    initialData = null,
+}: {
+    children: ReactNode;
+    initialData?: BlogData | null;
+}) {
+    const [data, setData] = useState<BlogData | null>(initialData);
+    const [loading, setLoading] = useState(!initialData);
     const [error, setError] = useState<Error | null>(null);
 
-    // Charge le JSON depuis l’URL publique
-    async function fetchData() {
+    function isEqual(a: BlogData | null, b: BlogData | null) {
+        return JSON.stringify(a) === JSON.stringify(b);
+    }
+
+    const fetchData = async () => {
         try {
             setLoading(true);
-            const res = await fetch(PUBLIC_DATA_URL);
+            const res = await fetch(PUBLIC_DATA_URL + "?t=" + Date.now(), { cache: "no-store" });
             if (!res.ok) throw new Error(`Erreur fetch : ${res.status}`);
             const json = (await res.json()) as BlogData;
-            setData(json);
+            if (!isEqual(json, data)) {
+                setData(json);
+            }
             setError(null);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (err: any) {
-            setError(err);
+        } catch (err: unknown) {
+            if (err instanceof Error) setError(err);
+            else setError(new Error("Erreur inconnue"));
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
-        fetchData();
-    }, []);
-
+        if (!initialData) {
+            fetchData();
+        } else if (initialData && !isEqual(initialData, data)) {
+            setData(initialData);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [initialData]);
 
     const value = useMemo(
         () => ({ data, loading, error }),
