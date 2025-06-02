@@ -13,6 +13,7 @@ function InnerBlog() {
 }
 
 export default function BlogClientWrapper() {
+
     return (
         <DataBlogProvider>
             <InnerBlog />

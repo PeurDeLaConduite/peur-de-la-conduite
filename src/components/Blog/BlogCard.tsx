@@ -65,18 +65,19 @@ function BlogCard({
                 <h3 className="blog-card__title">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>
-
-                <p className="blog-card__excerpt">{post.excerpt}</p>
-                {post.videoUrl && (
-                    <div className="blog-card__video">
-                        <VideoEmbed
-                            url={post.videoUrl}
-                            title={`Vidéo de ${post.title}`}
-                            iframeAllow={false}
-                            iframeTabIndex={-1}
-                        />
-                    </div>
-                )}
+                {/* <div className="blog-card__content"> */}
+                    <p className="blog-card__excerpt">{post.excerpt}</p>
+                    {post.videoUrl && (
+                        <div className="blog-card__video">
+                            <VideoEmbed
+                                url={post.videoUrl}
+                                title={`Vidéo de ${post.title}`}
+                                iframeAllow={false}
+                                iframeTabIndex={-1}
+                            />
+                        </div>
+                    )}
+                {/* </div> */}
                 <div className="blog-card__footer">
                     <div className="blog-card__link">
                         <ButtonLink href={`/blog/${post.slug}`}>
