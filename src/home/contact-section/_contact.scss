@@ -1,6 +1,7 @@
 .contact {
     margin-bottom: 136px;
     margin-top: 50px;
+    width: calc(100% - 96px);
     .contact-bg {
         position: relative;
         top: 0;
@@ -64,16 +65,17 @@
             .ctc-info {
                 flex-flow: wrap;
                 justify-content: space-between;
-                row-gap: 45px;
+                gap: 45px;
 
                 .ctc-card,
                 .ctc-social_card {
+                    flex: 1;
                     display: flex;
                     flex-flow: column;
                     justify-content: center;
                     align-items: center;
                     @include paragraph;
-                    width: calc(390px);
+                    min-width: calc(100% / 3 - 90px);
                     height: 225px;
                     padding: 40px 20px;
                     border-radius: 16px;
@@ -141,7 +143,9 @@
                 }
 
                 .ctc-social_card {
-                    width: calc(831px);
+                    // flex: 2;
+                    // max-width: calc(810px);
+                    min-width: calc((100% / 3 - 45px) * 2 + (75px / 1));
                     text-align: left;
                     p {
                         align-self: start;
@@ -268,6 +272,8 @@
 }
 @media (max-width: 1390px) {
     .contact {
+        // width: calc(100% - 48px);
+
         .ctc-content {
             position: relative;
             z-index: 1;
@@ -279,8 +285,8 @@
                 position: absolute;
                 z-index: 0;
                 object-fit: cover;
-                width: calc(100% - 84px);
-                left: calc(84px / 2);
+                // width: calc(100% - 84px);
+                // left: calc(84px / 2);
                 height: 100%;
                 border-radius: 45px;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -312,7 +318,7 @@
                         margin-right: 42px;
                     }
                     p {
-                        width: 622px;
+                        width: 100%;
                         @include paragraph();
                         color: black;
                     }
