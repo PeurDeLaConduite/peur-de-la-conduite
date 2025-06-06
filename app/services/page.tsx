@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { servicesData } from "../../src/assets/data/servicesData";
 export const metadata: Metadata = {
     title: "Services",
+    description:
+        "Coaching personnalisé pour surmonter la peur de la conduite et gagner en confiance au volant. Que vous soyez conducteur novice ou confirmé, notre accompagnement sur mesure vous aide à gérer le stress, perfectionner votre conduite et maîtriser chaque situation sur la route. Bénéficiez d’un coaching adapté pour vaincre l’amaxophobie, réussir votre examen de conduite, améliorer votre trajectoire et conduire en toute sérénité.",
 };
 import React from "react";
 import ServicesIcon from "../../src/components/svg_Icon/Services";
