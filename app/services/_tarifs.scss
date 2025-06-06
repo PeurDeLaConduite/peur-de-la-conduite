@@ -39,8 +39,16 @@
         margin: 0;
     }
 }
-
-.title {
+.page-title .nav-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px !important;
+    height: auto !important;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)) !important;
+    margin: 0;
+}
+.page-title .title {
     text-shadow: none;
     display: flex;
     align-items: center;
