@@ -1,20 +1,18 @@
 {
     "compilerOptions": {
-        "types": ["js-cookie", "next"],
-        "target": "ES2017",
-        "lib": ["dom", "dom.iterable", "esnext"],
+        "target": "ES2022",
+        "lib": ["DOM", "DOM.Iterable", "ES2022"],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
         "noEmit": true,
         "incremental": true,
-        "module": "esnext",
+        "module": "ESNext",
         "esModuleInterop": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
-        "strictNullChecks": true,
         "baseUrl": ".",
         "paths": {
             "@/*": ["./*"],
@@ -32,23 +30,30 @@
             {
                 "name": "next"
             }
-        ]
+        ],
+        "strictNullChecks": true
     },
     "include": [
-        "global.d.ts",
-        "src/**/*",
         "next-env.d.ts",
         ".next/types/**/*.ts",
         "**/*.ts",
         "**/*.tsx",
         "src/utils/context/NavigationContext.tsx",
         "src/components/header/utils/HiddenDelayComponent.tsx",
-        "app/headerProps.jsx",
         "src/components/svg_Icon/utils/Arrow.jsx",
         "src/components/slider/Slider.tsx",
         "src/components/slider/SliderArrow.jsx",
         "src/components/slider/SunBG.tsx",
-        "src/utils/useScreenWorker.ts"
-, "app/ScrollSectionsWrapper.jsx"    ],
+        "src/utils/context/utils/createUseContext.tsx",
+        "src/components/header/HeaderGhost.jsx",
+        "src/home/service/Component/servicesData.ts",
+        "src/utils/setT.js",
+        "app/ScrollSectionsWrapper.jsx",
+        "src/home/about/AboutCard.jsx",
+        "src/home/about/LoadMoreButton.jsx",
+        "src/home/contact-section/contactForm/form.jsx",
+        "src/home/contact-section/contactForm/formSuite.jsx",
+        "src/home/slider/sliderItem/SldTitle.jsx"
+    ],
     "exclude": ["node_modules"]
 }

@@ -3,6 +3,15 @@ import { servicesData } from "../../src/assets/data/servicesData";
 import React from "react";
 export const metadata: Metadata = {
     title: "Nos Tarifs",
+    alternates: {
+        canonical: "https://peur-de-la-conduite.fr/tarifs",
+        media: {
+            "only screen and (max-width: 900px)":
+                "https://mobile.peur-de-la-conduite.fr/tarifs",
+            "only screen and (min-width: 900px)":
+                "https://desktop.peur-de-la-conduite.fr/tarifs",
+        },
+    },
 };
 import TarifsIcon from "../../src/components/svg_Icon/Tarifs";
 import SectionContainer from "../blog/SectionContainer";
