@@ -13,21 +13,24 @@ backend:
 
 frontend:
     phases:
-        preBuild:
-            commands:
-                - corepack enable
-                - corepack prepare yarn@4.9.2 --activate
-                - yarn install --immutable
         build:
             commands:
-                - yarn run build
+                - export NEXT_TELEMETRY_DISABLED=1
+                - npm run build
 
     artifacts:
         baseDirectory: .next
         files:
             - "**/*"
+
     cache:
         paths:
             - .next/cache/**/*
             - .npm/**/*
             - node_modules/**/*
+
+    customHeaders: # ← même niveau que phases, artifacts, cache
+        - pattern: "/img/**"
+          headers:
+              - key: "Cache-Control"
+                value: "public, max-age=31536000, immutable"

@@ -5,7 +5,7 @@ const Loader = () => {
         <div className="loader">
             <div className="ld-circleBG"></div>
             <div className="ld-frame">
-                <img src="/img/retroviseur-1.svg" alt="loader" />
+                <img src="/img/retroviseur.svg" alt="loader" />
                 <div className="ld-dot2"></div>
                 <div className="ld-dot1"></div>
                 <div className="ld-dot"></div>

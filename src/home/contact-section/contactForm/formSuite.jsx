@@ -2,7 +2,7 @@ import { ValidationError } from "@formspree/react";
 
 const FormSuite = ({ formData, errors, handleChange, state }) => {
     return (
-        <div className="form">
+        <div className="form suite">
             <label htmlFor="telephone">
                 Téléphone{errors.telephone && errors.email && "*"}
                 {errors.telephone && errors.email && (

@@ -221,7 +221,7 @@
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
         border-radius: 18px;
         .form-title {
-            width: 610px;
+            // width: 610px;
             height: 50px;
             gap: 30px;
             justify-content: flex-start;
@@ -238,6 +238,7 @@
         }
         .form-questions {
             width: 610px;
+            width: calc((100% - 42px) / 2);
             flex-flow: wrap;
             gap: 18px;
             .questions {
@@ -272,7 +273,6 @@
 }
 @media (max-width: 1390px) {
     .contact {
-
         .ctc-content {
             position: relative;
             z-index: 1;
@@ -424,6 +424,7 @@
             .form {
                 width: 100% !important;
                 padding: 0 45px;
+
                 &:nth-of-type(4) {
                     position: relative;
                     top: -28px;

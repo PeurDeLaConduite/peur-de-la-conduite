@@ -7,7 +7,10 @@ Disallow: /public/css/
 
 # Bloquer uniquement les pages sans contenu
 Disallow: /reservation
-Disallow: /mentions-legales
+Disallow: /connection
+
+# Bloquer la page search sur la version mobile
+Disallow: /search
 
 # Optionnel : blocage d'états transitoires (chargement, erreur)
 Disallow: /*/loading
@@ -15,8 +18,8 @@ Disallow: /*/error
 
 Allow: /
 
-# Inclure le sitemap de la version desktop
-Sitemap: https://desktop.peur-de-la-conduite.fr/sitemap.xml
-
-# Inclure le sitemap de la version mobile (si nécessaire, selon ton approche)
+# Inclure le sitemap de la version mobile
 Sitemap: https://mobile.peur-de-la-conduite.fr/sitemap.xml
+
+# Inclure le sitemap de la version desktop (si nécessaire, selon ton approche)
+Sitemap: https://desktop.peur-de-la-conduite.fr/sitemap.xml
