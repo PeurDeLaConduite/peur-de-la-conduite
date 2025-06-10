@@ -7,15 +7,13 @@ interface ButtonPageProps {
 }
 
 const ButtonPage: React.FC<ButtonPageProps> = ({ href, className = "" }) => (
-    <div className={`btn-P ${className}`.trim()}>
+    <div className={`button-page ${className}`.trim()}>
         <div className="center-fixed">
-            <a className="btn-P__back" title="Retour" href={href}>
+            <a className="button-page__back flx-c" title="Retour" href={href}>
                 <svg
                     focusable="false"
                     fill="#fff"
                     aria-hidden="true"
-                    width="24"
-                    height="24"
                     viewBox="0 0 24 24"
                     data-testid="ArrowBackIcon"
                 >

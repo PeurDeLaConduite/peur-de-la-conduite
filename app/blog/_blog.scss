@@ -761,12 +761,23 @@ $gray-600: #4b5563;
         background: rgb(26, 109, 229);
         right: -24px;
         float: right;
+        padding: 0.5rem;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+
         filter: drop-shadow(var(--shadow-dark));
         &:hover {
             background: var(--primary-color);
             svg {
                 filter: drop-shadow(var(--shadow-dark));
             }
+        }
+        svg {
+            filter: drop-shadow(var(--shadow-dark));
+            // border: 1px solid #000;
+            height: 24px !important;
+            width: 24px !important;
         }
     }
 }

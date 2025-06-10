@@ -29,13 +29,14 @@
     padding: 0 104px;
     gap: 16px;
     margin: 48px auto;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)) !important;
     .nav-icon {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 42px !important;
         height: auto !important;
-        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)) !important;
+
         margin: 0;
     }
 }
@@ -45,7 +46,7 @@
     align-items: center;
     width: 42px !important;
     height: auto !important;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)) !important;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0)) !important;
     margin: 0;
 }
 .page-title .title {
@@ -59,7 +60,6 @@
     min-width: inherit;
     max-height: 64px;
     line-height: 32px;
-    // max-width: 170px;
 }
 
 .margin-srv {
