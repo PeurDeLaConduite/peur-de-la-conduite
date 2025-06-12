@@ -1,3 +1,6 @@
+# =================================================================
+# Bloquer les dossiers de code source / assets internes
+# =================================================================
 User-agent: *
 Disallow: /amplify/
 Disallow: /src/
@@ -5,21 +8,38 @@ Disallow: /utils/
 Disallow: /app/fonts/
 Disallow: /public/css/
 
-# Bloquer uniquement les pages sans contenu
+# =================================================================
+# Bloquer les pages sans contenu ou à exclure
+# =================================================================
+User-agent: *
+# Réservations & connexion (pages vides ou sensibles)
 Disallow: /reservation
 Disallow: /connection
-
-# Bloquer la page search sur la version mobile
+# Page de recherche mobile (duplication / filtrage)
 Disallow: /search
-
-# Optionnel : blocage d'états transitoires (chargement, erreur)
+# États transitoires Next.js (chargement, erreur)
 Disallow: /*/loading
 Disallow: /*/error
 
+# =================================================================
+# Bloquer les assets statiques (polices, images, scripts Next.js)
+# =================================================================
+User-agent: *
+Disallow: /_next/static/media/
+Disallow: /_next/static/chunks/
+Disallow: /img/
+Disallow: /css/
+
+# =================================================================
+# Autoriser tout le reste (vos pages HTML importantes)
+# =================================================================
+User-agent: *
 Allow: /
+
 
 # Inclure le sitemap de la version mobile
 Sitemap: https://mobile.peur-de-la-conduite.fr/sitemap.xml
 
 # Inclure le sitemap de la version desktop (si nécessaire, selon ton approche)
 Sitemap: https://desktop.peur-de-la-conduite.fr/sitemap.xml
+
