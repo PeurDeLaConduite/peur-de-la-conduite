@@ -7,7 +7,8 @@ interface AuthorSignatureProps {
     date: string | Date;
     className?: string;
 }
-
+const ava =
+    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/avatar.webp";
 const formatDate = (date: string | Date) => {
     try {
         return new Date(date).toLocaleDateString("fr-FR", {
@@ -41,15 +42,11 @@ const AuthorSignature: React.FC<AuthorSignatureProps> = ({
         </div>
         <div className="avatar">
             <img
-                src={author.avatar}
+                src={ava}
                 alt={`Avatar de ${author.name}`}
                 className="av  shadow"
             />
-            <img
-                src={author.avatar}
-                alt={`Avatar de ${author.name}`}
-                className="av "
-            />
+            <img src={ava} alt={`Avatar de ${author.name}`} className="av " />
         </div>
     </div>
 );

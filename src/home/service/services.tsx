@@ -19,7 +19,7 @@ const Services: React.FC = () => {
                     <div className="card_header flx-c">
                         <Image
                             className="srv-img_typo"
-                            src="/img/services/TYPO-LOGO.svg"
+                            src="https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/TYPO-LOGO.svg"
                             alt="Image cours de conduite"
                             width={360}
                             height={83}
