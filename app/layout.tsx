@@ -78,7 +78,7 @@ export const metadata: Metadata = {
 
         icon : [
             { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", type: "image/svg+xml" },
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },  
+            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },  
             { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },  
             { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },  
             { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }, 

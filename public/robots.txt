@@ -1,45 +1,36 @@
-# =================================================================
-# Bloquer les dossiers de code source / assets internes
-# =================================================================
 User-agent: *
+# 1 Autoriser explicitement vos pages clés
+Allow: /$
+Allow: /blog$
+Allow: /services$
+Allow: /tarifs$
+Allow: /contact$
+Allow: /mentions-legales$
+Allow: /informations-legales$
+
+# 2 Bloquer les dossiers de code source / assets internes
 Disallow: /amplify/
 Disallow: /src/
 Disallow: /utils/
 Disallow: /app/fonts/
 Disallow: /public/css/
 
-# =================================================================
-# Bloquer les pages sans contenu ou à exclure
-# =================================================================
-User-agent: *
-# Réservations & connexion (pages vides ou sensibles)
+# 3 Bloquer les pages sans contenu ou à exclure
 Disallow: /reservation
 Disallow: /connection
-# Page de recherche mobile (duplication / filtrage)
 Disallow: /search
-# États transitoires Next.js (chargement, erreur)
 Disallow: /*/loading
 Disallow: /*/error
 
-# =================================================================
-# Bloquer les assets statiques (polices, images, scripts Next.js)
-# =================================================================
-User-agent: *
-Disallow: /_next/static/media/
-Disallow: /_next/static/chunks/
-Disallow: /img/
-Disallow: /css/
-
-# =================================================================
-# Autoriser tout le reste (vos pages HTML importantes)
-# =================================================================
-User-agent: *
-Allow: /
-
+# 4 (Optionnel) Bloquer les assets statiques Next.js  
+#     Si vous souhaitez que Googlebot charge vos fonts/JS/CSS, commentez ces lignes :
+# Disallow: /_next/static/media/
+# Disallow: /_next/static/chunks/
+# Disallow: /img/
+# Disallow: /css/
 
 # Inclure le sitemap de la version mobile
 Sitemap: https://mobile.peur-de-la-conduite.fr/sitemap.xml
 
 # Inclure le sitemap de la version desktop (si nécessaire, selon ton approche)
 Sitemap: https://desktop.peur-de-la-conduite.fr/sitemap.xml
-
