@@ -4,7 +4,6 @@ import SectionContainer from "./SectionContainer";
 import BlogClientWrapper from "./BlogClientWrapper";
 import BlogIcon from "@components/svg_Icon/Blog";
 
-
 export const metadata: Metadata = {
     title: "Blog",
     alternates: {
@@ -16,6 +15,8 @@ export const metadata: Metadata = {
                 "https://desktop.peur-de-la-conduite.fr/blog",
         },
     },
+    description:
+        "Découvrez une série d’articles dédiés à la peur de la conduite : conseils pour surmonter l’amaxophobie, gérer le stress au volant, réussir le permis et retrouver confiance.",
 };
 
 export default async function Page() {
