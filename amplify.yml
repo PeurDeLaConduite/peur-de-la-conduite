@@ -29,18 +29,30 @@ frontend:
             - .npm/**/*
             - node_modules/**/*
 
-    customHeaders: # <--- Ici seulement, une seule fois sous frontend
+    customHeaders: # ← une seule fois sous frontend
         - pattern: "/img/**"
           headers:
               - key: "Cache-Control"
                 value: "public, max-age=31536000, immutable"
-        - pattern: "/*" # ou "/*" pour ouvrir tout le site
+
+        - pattern: "/api/*"
           headers:
               - key: "Access-Control-Allow-Origin"
                 value: "https://mobile.peur-de-la-conduite.fr"
               - key: "Access-Control-Allow-Credentials"
                 value: "true"
               - key: "Access-Control-Allow-Methods"
-                value: "GET,POST,OPTIONS"
+                value: "GET, POST, OPTIONS"
               - key: "Access-Control-Allow-Headers"
-                value: "Content-Type,Authorization"
+                value: "Content-Type, Authorization"
+
+        - pattern: "/*" # ou "/contact/*" si tu veux restreindre
+          headers:
+              - key: "Access-Control-Allow-Origin"
+                value: "https://mobile.peur-de-la-conduite.fr"
+              - key: "Access-Control-Allow-Credentials"
+                value: "true"
+              - key: "Access-Control-Allow-Methods"
+                value: "GET, POST, OPTIONS"
+              - key: "Access-Control-Allow-Headers"
+                value: "Content-Type, Authorization"
