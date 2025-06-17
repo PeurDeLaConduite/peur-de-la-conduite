@@ -14,24 +14,25 @@ export const contactAnnouncements: ContactAnnouncement[] = [
 
 export const contactDetails: ContactDetail[] = [
     {
-        svg: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/contact/icon/clock.svg",
+        svg: "https://assets.peur-de-la-conduite.fr/img/contact/icon/clock.svg",
         text: "Du Lundi au Dimanche, 07h - 20h",
         alt: "Horaires",
     },
     {
-        svg: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/contact/icon/phone.svg",
+        svg: "https://assets.peur-de-la-conduite.fr/img/contact/icon/phone.svg",
         text: "+33 6 74 25 91 81",
         link: "tel:+33674259181",
         alt: "Téléphonne",
     },
     {
-        svg: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/contact/icon/mail.svg",
+        svg: "https://assets.peur-de-la-conduite.fr/img/contact/icon/mail.svg",
         text: "Envoyez-moi un mail",
         link: "mailto:contact.peurdelaconduite@gmail.com",
         alt: "Mail",
     },
     {
-        svg: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/contact/icon/location.svg",
+        svg:
+            "https://assets.peur-de-la-conduite.fr/img/contact/icon/location.svg",
         text: "17 Allée Didier Daurat, 76620 LE HAVRE",
         link:
             "https://maps.google.com/?q=17+Allée+Didier+Daurat,+76620+LE+HAVRE",

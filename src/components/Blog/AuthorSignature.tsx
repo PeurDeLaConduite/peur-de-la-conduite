@@ -7,8 +7,7 @@ interface AuthorSignatureProps {
     date: string | Date;
     className?: string;
 }
-const ava =
-    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/avatar.webp";
+const ava = "https://assets.peur-de-la-conduite.fr/img/about/avatar.webp";
 const formatDate = (date: string | Date) => {
     try {
         return new Date(date).toLocaleDateString("fr-FR", {

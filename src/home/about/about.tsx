@@ -7,7 +7,7 @@ const About = () => {
         <div className="about content-wrapper flx-c">
             <div className="ab-img_info">
                 <Image
-                    src="https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/INFO.svg"
+                    src="https://assets.peur-de-la-conduite.fr/img/about/INFO.svg"
                     alt="Info Icon"
                     width="540"
                     height="540"

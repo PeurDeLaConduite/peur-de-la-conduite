@@ -14,7 +14,8 @@ export const servicesData = {
         services: [
             {
                 title: "Gestion du stress avant examen !",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/Stress.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/Stress.svg",
                 imgAlt: "Logo Gestion du stress avant examen",
                 description:
                     "Le stress peut être une cause majeure d’échec. Nous allons identifier ses causes et travailler dessus.",
@@ -23,14 +24,16 @@ export const servicesData = {
             {
                 title: "Situations de Conduite difficiles !",
                 id: "scd",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/SCD.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/SCD.svg",
                 imgAlt: "Logo Gestion des situations de conduite difficiles",
                 description:
                     "Gérer les giratoires, voies rapides ou créneaux en travaillant sur la maîtrise et la confiance.",
             },
             {
                 title: "Conduite ACC ou Supervisée",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/ACC.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/ACC.svg",
                 imgAlt: "Logo Conduites accompagnée ou supervisée",
                 description:
                     "Nous aidons à améliorer la communication et les bonnes pratiques entre l’élève et l’accompagnateur.",
@@ -39,7 +42,8 @@ export const servicesData = {
             {
                 id: "cco",
                 title: "Coaching Concentration",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/Concentration.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/Concentration.svg",
                 imgAlt: "Logo Coaching Concentration",
                 description:
                     "Comprendre ce qu'est la concentration et comment l’améliorer pour mieux conduire.",
@@ -47,7 +51,8 @@ export const servicesData = {
             {
                 id: "mt",
                 title: "Maîtrise de la trajectoire !",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/TRAGECTOIRE.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/TRAGECTOIRE.svg",
                 imgAlt: "Logo Maîtrise de la trajectoire",
                 description:
                     "Problèmes de trajectoire ? Nous analysons votre regard et votre technique pour une correction adaptée.",
@@ -71,7 +76,8 @@ export const servicesData = {
             {
                 id: "pac",
                 title: "Peur de la conduite (Amaxophobie)",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/Stress.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/Stress.svg",
                 imgAlt: "Logo Coaching peur de la conduite",
                 description:
                     "Le stress peut être une cause majeure d’échec. Nous allons identifier ses causes et travailler dessus.",
@@ -79,7 +85,8 @@ export const servicesData = {
             {
                 id: "scd",
                 title: "Situations de Conduite difficiles",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/SCD.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/SCD.svg",
                 imgAlt: "Logo Gestion des situations de conduite difficiles",
                 description:
                     "Gérer les giratoires, voies rapides ou créneaux en travaillant sur la maîtrise et la confiance.",
@@ -87,7 +94,8 @@ export const servicesData = {
             {
                 id: "pcd",
                 title: "Perfectionnement de la Conduite",
-                imgSrc: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/services/TRAGECTOIRE.svg",
+                imgSrc:
+                    "https://assets.peur-de-la-conduite.fr/img/services/TRAGECTOIRE.svg",
                 imgAlt: "Logo Maîtrise de la trajectoire",
                 description:
                     "Améliorer sa conduite, réduire la consommation de carburant et anticiper les dangers.",

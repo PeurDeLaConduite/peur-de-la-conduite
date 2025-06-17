@@ -12,7 +12,7 @@ const ContactAnnouncement: React.FC<ContactAnnouncementProps> = ({
         <div className="flx-c ctc-announcement">
             <div className="flx-c">
                 <Image
-                    src="https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/contact/icon/announcement.svg"
+                    src="https://assets.peur-de-la-conduite.fr/img/contact/icon/announcement.svg"
                     alt="announcement"
                     width={45}
                     height={45}
