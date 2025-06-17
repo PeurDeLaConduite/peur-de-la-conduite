@@ -10,13 +10,12 @@ backend:
                 - yarn cache clean
                 - yarn install --immutable
                 - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
-
 frontend:
     phases:
         build:
             commands:
                 - export NEXT_TELEMETRY_DISABLED=1
-                - npm run build
+                - yarn run build
 
     artifacts:
         baseDirectory: .next
