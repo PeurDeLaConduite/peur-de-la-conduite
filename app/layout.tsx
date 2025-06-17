@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type{ Metadata } from "next";
 import localFont from "next/font/local";
 import "../src/assets/styles/main.scss";
 import { DrivingProvider } from "../src/utils/context/DrivingContext";
@@ -7,34 +7,36 @@ import { Suspense } from "react";
 import HeaderProps from "./headerProps";
 import { ScrollProvider } from "../src/utils/context/ScrollContext";
 import ScrollSectionsWrapper from "./ScrollSectionsWrapper";
-import Footer from "../src/components/footer/footer"
+import Footer from "../src/components/footer/footer";
 import Loader from "@/src/components/loader/Loader";
+import MobileRedirect from "./MobileRedirect";
+
 export const RobotoFlex = localFont({
     src: "/fonts/RobotoFlex.woff2",
     variable: "--RobotoFlex",
     weight: "100 900",
-    display: "swap", 
+    display: "swap",
 });
 
 const Montserrat = localFont({
     src: "./fonts/Montserrat.woff2",
     variable: "--montserrat",
     weight: "100 900",
-    display: "swap", 
+    display: "swap",
 });
 
 const Nunito = localFont({
     src: "./fonts/Nunito.woff2",
     variable: "--nunito",
     weight: "100 900",
-    display: "swap", 
+    display: "swap",
 });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://peur-de-la-conduite.fr/"),
     title: {
-        template: '%s | Peur de la conduite',
-        default: 'Peur de la conduite',
+        template: "%s | Peur de la conduite",
+        default: "Peur de la conduite",
     },
     description:
         "Peur de la conduite ? Coaching personnalisé pour surmonter la peur de la conduite et gagner en confiance au volant. Que vous soyez conducteur novice ou confirmé, notre accompagnement sur mesure vous aide à gérer le stress, perfectionner votre conduite et maîtriser chaque situation sur la route. Bénéficiez d’un coaching adapté pour vaincre l’amaxophobie, réussir votre examen de conduite, améliorer votre trajectoire et conduire en toute sérénité.",
@@ -55,46 +57,117 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/avatar.webp",
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/avatar.webp",
                 width: 225,
                 height: 225,
                 alt: "Mounir Bouakkaz, Enseignant de la conduite",
             },
             {
-                url: "https://www.facebook.com/photo/?fbid=122107253852575347&set=a.122098521692575347",
+                url:
+                    "https://www.facebook.com/photo/?fbid=122107253852575347&set=a.122098521692575347",
                 width: 284,
                 height: 267,
                 alt: "Logo Peur de la Conduite sur Facebook",
             },
         ],
     },
-    
+
     icons: {
         apple: [
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "152x152", type: "image/png" },  // iPad
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "180x180", type: "image/png" },  // Retina
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/apple-touch-icon.png" },  // 120x120
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "152x152",
+                type: "image/png",
+            }, // iPad
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "180x180",
+                type: "image/png",
+            }, // Retina
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/apple-touch-icon.png",
+            }, // 120x120
         ],
 
-        icon : [
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", type: "image/svg+xml" },
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },  
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },  
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },  
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }, 
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "48x48", type: "image/svg+xml" },  
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "64x64", type: "image/svg+xml" }, 
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "270x270", type: "image/svg+xml"  },  
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "310x310", type: "image/svg+xml"  }, 
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "152x152", type: "image/svg+xml"  },  
-            { url: "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg", sizes: "180x180", type: "image/svg+xml" }, 
-        ],        
+        icon: [
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                type: "image/svg+xml",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/favicon-16x16.png",
+                sizes: "16x16",
+                type: "image/png",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/favicon-32x32.png",
+                sizes: "32x32",
+                type: "image/png",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-192x192.png",
+                sizes: "192x192",
+                type: "image/png",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-512x512.png",
+                sizes: "512x512",
+                type: "image/png",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "48x48",
+                type: "image/svg+xml",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "64x64",
+                type: "image/svg+xml",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "270x270",
+                type: "image/svg+xml",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "310x310",
+                type: "image/svg+xml",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "152x152",
+                type: "image/svg+xml",
+            },
+            {
+                url:
+                    "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                sizes: "180x180",
+                type: "image/svg+xml",
+            },
+        ],
     },
     alternates: {
-        canonical: "https://peur-de-la-conduite.fr/", 
+        canonical: "https://peur-de-la-conduite.fr/",
         media: {
-            "only screen and (max-width: 900px)": "https://mobile.peur-de-la-conduite.fr/", 
-            "only screen and (min-width: 900px)": "https://desktop.peur-de-la-conduite.fr/", 
+            "only screen and (max-width: 900px)":
+                "https://mobile.peur-de-la-conduite.fr/",
+            "only screen and (min-width: 900px)":
+                "https://desktop.peur-de-la-conduite.fr/",
         },
     },
 };
@@ -107,83 +180,93 @@ export default function RootLayout({
     return (
         <html lang="fr-FR">
             <head>
-                <link rel="alternate" media="only screen and (max-width: 640px)" href="https://mobile.peur-de-la-conduite.fr/"/>
+                <link
+                    rel="alternate"
+                    media="only screen and (max-width: 640px)"
+                    href="https://mobile.peur-de-la-conduite.fr/"
+                />
                 <link rel="preload" href="/css/desktopDefer.css" as="style" />
                 <link
                     rel="stylesheet"
                     href="/css/desktopDefer.css"
                     fetchPriority="low"
-                />                
-                <link rel="preload" href="https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/retroviseur.svg" as="image" />
+                />
+                <link
+                    rel="preload"
+                    href="https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/retroviseur.svg"
+                    as="image"
+                />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "ProfessionalService",
-                        "@id": "https://www.peur-de-la-conduite.fr/",
-                        "name": "Peur de la conduite - Coaching Auto",
-                        "image": [
-                            "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/avatar.webp"
-                        ],
-                        "url": "https://www.peur-de-la-conduite.fr/",
-                        "telephone": "+33 6 74 25 91 81",
-                        "email": "contact.peurdelaconduite@gmail.com",
-                        "description": "Coaching individuel pour surmonter l'amaxophobie, gérer le stress, réussir l'examen de conduite ou reprendre confiance au volant.",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "streetAddress": "17 Allée Didier Daurat",
-                            "addressLocality": "Le Havre",
-                            "addressRegion": "Normandie",
-                            "postalCode": "76620",
-                            "addressCountry": "FR"
-                        },
-                        "geo": {
-                            "@type": "GeoCoordinates",
-                            "latitude": "49.5051",
-                            "longitude": "0.1604"
-                        },
-                        "openingHoursSpecification": [
-                            {
-                            "@type": "OpeningHoursSpecification",
-                            "dayOfWeek": [
-                                "Monday",
-                                "Tuesday",
-                                "Wednesday",
-                                "Thursday",
-                                "Friday",
-                                "Saturday",
-                                "Sunday"
+                            "@context": "https://schema.org",
+                            "@type": "ProfessionalService",
+                            "@id": "https://www.peur-de-la-conduite.fr/",
+                            name: "Peur de la conduite - Coaching Auto",
+                            image: [
+                                "https://s3.eu-west-3.amazonaws.com/assets.peur-de-la-conduite.fr/img/about/avatar.webp",
                             ],
-                            "opens": "07:00",
-                            "closes": "20:00"
-                            }
-                        ],
-                        "sameAs": [
-                            "http://www.youtube.com/@MounirBouakkaz-r4i",
-                            "https://wa.me/33674259181",
-                            "https://www.tiktok.com/@peur.de.la.condui?_t=ZN-8taHCRDnmnH&_r=1",
-                            "https://www.instagram.com/peurdelaconduite.fr/",
-                            "https://www.facebook.com/profile.php?id=61567260421073",
-                            "https://www.linkedin.com/in/mounir-bouakkaz"
-                        ],
-                        "founder": {
-                            "@type": "Person",
-                            "name": "Mounir Bouakkaz"
-                        }
-                        })
+                            url: "https://www.peur-de-la-conduite.fr/",
+                            telephone: "+33 6 74 25 91 81",
+                            email: "contact.peurdelaconduite@gmail.com",
+                            description:
+                                "Coaching individuel pour surmonter l'amaxophobie, gérer le stress, réussir l'examen de conduite ou reprendre confiance au volant.",
+                            address: {
+                                "@type": "PostalAddress",
+                                streetAddress: "17 Allée Didier Daurat",
+                                addressLocality: "Le Havre",
+                                addressRegion: "Normandie",
+                                postalCode: "76620",
+                                addressCountry: "FR",
+                            },
+                            geo: {
+                                "@type": "GeoCoordinates",
+                                latitude: "49.5051",
+                                longitude: "0.1604",
+                            },
+                            openingHoursSpecification: [
+                                {
+                                    "@type": "OpeningHoursSpecification",
+                                    dayOfWeek: [
+                                        "Monday",
+                                        "Tuesday",
+                                        "Wednesday",
+                                        "Thursday",
+                                        "Friday",
+                                        "Saturday",
+                                        "Sunday",
+                                    ],
+                                    opens: "07:00",
+                                    closes: "20:00",
+                                },
+                            ],
+                            sameAs: [
+                                "http://www.youtube.com/@MounirBouakkaz-r4i",
+                                "https://wa.me/33674259181",
+                                "https://www.tiktok.com/@peur.de.la.condui?_t=ZN-8taHCRDnmnH&_r=1",
+                                "https://www.instagram.com/peurdelaconduite.fr/",
+                                "https://www.facebook.com/profile.php?id=61567260421073",
+                                "https://www.linkedin.com/in/mounir-bouakkaz",
+                            ],
+                            founder: {
+                                "@type": "Person",
+                                name: "Mounir Bouakkaz",
+                            },
+                        }),
                     }}
                 />
-
             </head>
             <body
-                className={`${RobotoFlex.variable} ${Montserrat.variable} ${Nunito.variable}`} id="top"
+                className={`${RobotoFlex.variable} ${Montserrat.variable} ${Nunito.variable}`}
+                id="top"
             >
+                <MobileRedirect />
                 <ScrollProvider>
                     <ScrollSectionsWrapper>
                         <SearchProvider>
                             <DrivingProvider>
-                                <Suspense fallback={<Loader/>}>
+                                <Suspense fallback={<Loader />}>
                                     <header>
                                         <div className="content-wrapper">
                                             <HeaderProps />
