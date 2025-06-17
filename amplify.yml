@@ -10,6 +10,7 @@ backend:
                 - yarn cache clean
                 - yarn install --immutable
                 - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+
 frontend:
     phases:
         build:
@@ -28,8 +29,18 @@ frontend:
             - .npm/**/*
             - node_modules/**/*
 
-    customHeaders: # ← même niveau que phases, artifacts, cache
+    customHeaders: # <--- Ici seulement, une seule fois sous frontend
         - pattern: "/img/**"
           headers:
               - key: "Cache-Control"
                 value: "public, max-age=31536000, immutable"
+        - pattern: "/*" # ou "/*" pour ouvrir tout le site
+          headers:
+              - key: "Access-Control-Allow-Origin"
+                value: "https://mobile.peur-de-la-conduite.fr"
+              - key: "Access-Control-Allow-Credentials"
+                value: "true"
+              - key: "Access-Control-Allow-Methods"
+                value: "GET,POST,OPTIONS"
+              - key: "Access-Control-Allow-Headers"
+                value: "Content-Type,Authorization"
