@@ -2,9 +2,12 @@ import { NextResponse, type NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
     const ua = request.headers.get("user-agent") || "";
+
+    // Ignore les bots
     const isBot = /bot|crawl|slurp|spider|mediapartners/i.test(ua);
     if (isBot) return NextResponse.next();
 
+    // Détection device
     const isTablet =
         /(iPad|Tablet)/i.test(ua) ||
         (/(Android)/i.test(ua) && !/Mobile/i.test(ua));
@@ -13,21 +16,10 @@ export function middleware(request: NextRequest) {
         !isTablet &&
         /Mobi|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
 
-    if (isMobile) {
-        const destination = `https://mobile.peur-de-la-conduite.fr${request.nextUrl.pathname}${request.nextUrl.search}`;
-        const response = NextResponse.redirect(destination);
-        response.cookies.set("deviceType", "mobile", {
-            path: "/",
-            domain: ".peur-de-la-conduite.fr",
-            httpOnly: true,
-            secure: true,
-            sameSite: "strict",
-        });
-        return response;
-    }
+    const deviceType = isMobile ? "mobile" : "desktop";
 
     const response = NextResponse.next();
-    response.cookies.set("deviceType", "desktop", {
+    response.cookies.set("deviceType", deviceType, {
         path: "/",
         domain: ".peur-de-la-conduite.fr",
         httpOnly: true,
