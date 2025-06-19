@@ -1,4 +1,5 @@
-import type{ Metadata } from "next";
+import type { Metadata } from "next";
+import metaData from "./metaData";
 import localFont from "next/font/local";
 import "../src/assets/styles/main.scss";
 import { DrivingProvider } from "../src/utils/context/DrivingContext";
@@ -32,146 +33,7 @@ const Nunito = localFont({
     display: "swap",
 });
 
-export const metadata: Metadata = {
-    metadataBase: new URL("https://peur-de-la-conduite.fr/"),
-    title: {
-        template: "%s | Peur de la conduite",
-        default: "Peur de la conduite",
-    },
-    description:
-        "Peur de la conduite ? Coaching personnalisé pour surmonter la peur de la conduite et gagner en confiance au volant. Que vous soyez conducteur novice ou confirmé, notre accompagnement sur mesure vous aide à gérer le stress, perfectionner votre conduite et maîtriser chaque situation sur la route. Bénéficiez d’un coaching adapté pour vaincre l’amaxophobie, réussir votre examen de conduite, améliorer votre trajectoire et conduire en toute sérénité.",
-    authors: [{ name: "Mounir Bouakkaz" }],
-    robots: {
-        index: true,
-        follow: true,
-    },
-    openGraph: {
-        title: "Peur de la conduite",
-        description: `
-            Mounir Bouakkaz, enseignant de la conduite, vous accompagne avec un coaching personnalisé 
-            pour vaincre l’amaxophobie, gérer le stress avant examen et améliorer votre maîtrise au volant.
-        `,
-        url: "https://peur-de-la-conduite.fr/",
-        siteName: "Peur de la conduite",
-        locale: "fr_FR",
-        type: "website",
-        images: [
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/about/avatar.webp",
-                width: 225,
-                height: 225,
-                alt: "Mounir Bouakkaz, Enseignant de la conduite",
-            },
-            {
-                url:
-                    "https://www.facebook.com/photo/?fbid=122107253852575347&set=a.122098521692575347",
-                width: 284,
-                height: 267,
-                alt: "Logo Peur de la Conduite sur Facebook",
-            },
-        ],
-    },
-
-    icons: {
-        apple: [
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "152x152",
-                type: "image/png",
-            }, // iPad
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "180x180",
-                type: "image/png",
-            }, // Retina
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/apple-touch-icon.png",
-            }, // 120x120
-        ],
-
-        icon: [
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                type: "image/svg+xml",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/favicon-16x16.png",
-                sizes: "16x16",
-                type: "image/png",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/icons/favicon-32x32.png",
-                sizes: "32x32",
-                type: "image/png",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-192x192.png",
-                sizes: "192x192",
-                type: "image/png",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-512x512.png",
-                sizes: "512x512",
-                type: "image/png",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "48x48",
-                type: "image/svg+xml",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "64x64",
-                type: "image/svg+xml",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "270x270",
-                type: "image/svg+xml",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "310x310",
-                type: "image/svg+xml",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "152x152",
-                type: "image/svg+xml",
-            },
-            {
-                url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
-                sizes: "180x180",
-                type: "image/svg+xml",
-            },
-        ],
-    },
-    alternates: {
-        canonical: "https://peur-de-la-conduite.fr/",
-        media: {
-            "only screen and (max-width: 900px)":
-                "https://mobile.peur-de-la-conduite.fr/",
-            "only screen and (min-width: 900px)":
-                "https://desktop.peur-de-la-conduite.fr/",
-        },
-    },
-};
-
+export const metadata: Metadata = metaData;
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -180,6 +42,11 @@ export default function RootLayout({
     return (
         <html lang="fr-FR">
             <head>
+                <link
+                    rel="preload"
+                    href="https://assets.peur-de-la-conduite.fr/img/retroviseur.svg"
+                    as="image"
+                />
                 <link
                     rel="alternate"
                     media="only screen and (max-width: 640px)"
@@ -240,6 +107,22 @@ export default function RootLayout({
                                     ],
                                     opens: "07:00",
                                     closes: "20:00",
+                                },
+                            ],
+                            priceRange: "39.99€ - 59.99€",
+                            offers: [
+                                {
+                                    "@type": "Offer",
+                                    name: "Coaching Conducteurs Débutants",
+                                    price: "39.99",
+                                    priceCurrency: "EUR",
+                                },
+                                {
+                                    "@type": "Offer",
+                                    name:
+                                        "Coaching Conducteurs Confirmés (Amaxophobie)",
+                                    price: "49.99",
+                                    priceCurrency: "EUR",
                                 },
                             ],
                             sameAs: [
