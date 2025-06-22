@@ -289,12 +289,15 @@ $gray-600: #4b5563;
             .loader {
                 position: inherit !important;
                 width: 505.5px !important;
+                width: 100% !important;
                 height: 284.5px !important;
+                height: 100% !important;
+
                 overflow: hidden;
                 padding: 5rem;
                 box-shadow: inset var(--shadow-dark);
                 opacity: 0.75;
-                background: #000;
+                // background: #000;
                 top: 0;
                 left: 0;
                 .ld-circleBG {
@@ -311,7 +314,7 @@ $gray-600: #4b5563;
                     top: 150px;
                     width: 8px;
                     height: 8px;
-                    background: black;
+                    // background: #fff;
                     border-radius: 50%;
                     opacity: 0;
                 }
@@ -346,13 +349,7 @@ $gray-600: #4b5563;
         display: inline-block;
     }
 }
-// .blog-list {
-//     display: grid;
-//     gap: 1.5rem;
-//     @media (min-width: 768px) {
-//         grid-template-columns: repeat(2, 1fr);
-//     }
-// }
+
 .section-page {
     max-width: 1200px;
     margin-left: auto;
@@ -398,7 +395,6 @@ $gray-600: #4b5563;
 .section-page.section-card {
     background: #eff6ff;
     .section-card-header {
-        background: #eff6ff;
         border-radius: 0.5rem 0.5rem 0 0;
         background: transparent;
         padding-bottom: 2rem;
@@ -408,41 +404,6 @@ $gray-600: #4b5563;
         width: 100%;
     }
 }
-/*
-
-    .video-embed {
-        aspect-ratio: 9 / 16;
-        width: 220px;
-        max-width: 100%;
-        background: #000;
-        border-radius: 0.75rem;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
-
-        &__iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border: none;
-            display: block;
-            background: #000;
-            transition: width 0.2s, margin 0.2s;
-        }
-
-        &--short {
-            .video-embed__iframe {
-                width: 170%; // Zoom horizontal
-                height: 100%;
-                object-fit: cover; // Pour remplir le cadre vertical
-                margin-left: 0%; // Centre la vidéo
-            }
-        }
-    }
-
-    */
 
 .blog-list:hover .blog-card:not(:hover) {
     transform: scale(0.75);
@@ -554,6 +515,42 @@ $gray-600: #4b5563;
                     height: 100%;
                     object-fit: cover; // Pour remplir le cadre vertical
                     margin-left: 0%; // Centre la vidéo
+                }
+            }
+            .loader {
+                position: inherit !important;
+                width: 505.5px !important;
+                width: 100% !important;
+                height: 284.5px !important;
+                height: 100% !important;
+
+                overflow: hidden;
+                padding: 5rem;
+                box-shadow: inset var(--shadow-dark);
+                opacity: 0.75;
+                // background: #000;
+                top: 0;
+                left: 0;
+                .ld-circleBG {
+                    display: none;
+                }
+                .ld-frame {
+                    height: 100% !important;
+                    width: 200px !important;
+                    svg,
+                    img {
+                        max-width: 180px !important;
+                    }
+                }
+                .ld-dot,
+                .ld-dot1,
+                .ld-dot2 {
+                    position: absolute;
+                    top: 350px;
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    opacity: 0;
                 }
             }
         }
@@ -781,8 +778,37 @@ $gray-600: #4b5563;
         }
     }
 }
-// .post-page__back {
-//     @include buttonText;
-//     position: fixed;
-//     display: inline-block;
-// }
+.yt-pl {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    position: relative;
+}
+.yt-pl img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.yt-pl__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 3rem;
+    height: 3rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.yt-pl__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: #fff;
+}

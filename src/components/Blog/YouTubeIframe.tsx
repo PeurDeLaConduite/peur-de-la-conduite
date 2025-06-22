@@ -23,6 +23,7 @@ export default function YouTubeIframe({
             {...(iframeAllow !== false ? { allow: iframeAllow } : {})}
             allowFullScreen
             title={title || "YouTube video"}
+            loading="lazy"
             {...(iframeTabIndex !== false ? { tabIndex: iframeTabIndex } : {})}
             onLoad={onLoad}
             style={{

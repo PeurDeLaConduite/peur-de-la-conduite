@@ -2,6 +2,7 @@
 
 import React, { Suspense, lazy, useState } from "react";
 import Loader from "../loader/Loader";
+import YouTubePlaceholder from "./YouTubePlaceholder";
 
 function getYouTubeId(url?: string): string | null {
     if (typeof url !== "string") return null;
@@ -50,6 +51,7 @@ const VideoEmbed: React.FC<Props> = ({
 }) => {
     const ytId = getYouTubeId(url);
     const isShort = isYoutubeShort(url);
+    const [showPlayer, setShowPlayer] = useState(false);
     const [iframeLoaded, setIframeLoaded] = useState(false);
 
     if (ytId) {
@@ -58,7 +60,14 @@ const VideoEmbed: React.FC<Props> = ({
                 className={`video-embed${isShort ? " video-embed--short" : ""}`}
                 style={{ position: "relative" }}
             >
-                {!iframeLoaded && (
+                {!showPlayer && (
+                    <YouTubePlaceholder
+                        ytId={ytId}
+                        title={title}
+                        onClick={() => setShowPlayer(true)}
+                    />
+                )}
+                {showPlayer && !iframeLoaded && (
                     <div
                         style={{
                             position: "absolute",
@@ -76,15 +85,17 @@ const VideoEmbed: React.FC<Props> = ({
                         <Loader />
                     </div>
                 )}
-                <Suspense fallback={null}>
-                    <YouTubeIframe
-                        ytId={ytId}
-                        title={title}
-                        iframeAllow={iframeAllow}
-                        iframeTabIndex={iframeTabIndex}
-                        onLoad={() => setIframeLoaded(true)}
-                    />
-                </Suspense>
+                {showPlayer && (
+                    <Suspense fallback={null}>
+                        <YouTubeIframe
+                            ytId={ytId}
+                            title={title}
+                            iframeAllow={iframeAllow}
+                            iframeTabIndex={iframeTabIndex}
+                            onLoad={() => setIframeLoaded(true)}
+                        />
+                    </Suspense>
+                )}
             </div>
         );
     }
