@@ -1,29 +1,26 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { signInWithRedirect } from "aws-amplify/auth";
+import { signInWithRedirect, signOut } from "aws-amplify/auth";
+import { useAuth } from "./AuthProvider";
 
 export default function ConnectionButton({ label }: { label: string }) {
-  const linkRef = useRef<HTMLAnchorElement>(null);
+  const { user } = useAuth();
 
-  useEffect(() => {
-    const element = linkRef.current;
-    if (!element) return;
-
-    const handleClick = (event: MouseEvent) => {
-      event.preventDefault();
-      signInWithRedirect();
-    };
-
-    element.addEventListener("click", handleClick);
-    return () => {
-      element.removeEventListener("click", handleClick);
-    };
-  }, []);
+  const handleClick = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    if (user) {
+      await signOut();
+    } else {
+      await signInWithRedirect();
+    }
+  };
 
   return (
-    <a ref={linkRef} href="#" className="head-link connection-btn">
+    <button onClick={handleClick} className="head-link connection-btn">
       <span className="nav-link">{label}</span>
-    </a>
+    </button>
   );
 }
+
