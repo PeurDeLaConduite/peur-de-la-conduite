@@ -4,6 +4,7 @@ import React from "react";
 import { MenuItem } from "../../../assets/data/menuItems";
 import SubMenu from "./SubMenu";
 import RenderLink from "./RenderLink";
+import ConnectionButton from "../../auth/ConnectionButton";
 import { getShowGroupClass } from "../utils/menuUtils";
 interface NavLinkShowProps {
     menuItem: MenuItem;
@@ -49,6 +50,10 @@ const NavLinkShow: React.FC<NavLinkShowProps> = ({
         event.preventDefault();
         onMenuToggle(menuItem.id, event);
     };
+
+    if (menuItem.id === "connection") {
+        return <ConnectionButton label={menuItem.title} />;
+    }
 
     return openMainButton || mainNav || (openButton && showNavLinks) ? (
         <div
