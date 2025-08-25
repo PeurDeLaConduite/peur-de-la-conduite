@@ -10,6 +10,7 @@
         "generate:sitemap": "node scripts/generate-sitemap.js"
     },
     "dependencies": {
+        "@aws-amplify/auth": "^6.13.0",
         "@aws-amplify/core": "^6.7.2",
         "@aws-amplify/ui-react": "^6.7.1",
         "@formspree/react": "^2.5.1",
@@ -43,5 +44,8 @@
         "edge >= 115",
         "safari >= 16"
     ],
-    "packageManager": "yarn@4.9.2"
+    "packageManager": "yarn@4.9.2",
+    "engines": {
+        "node": "20.18.x"
+    }
 }
