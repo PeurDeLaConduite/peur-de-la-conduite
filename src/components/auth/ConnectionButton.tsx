@@ -1,19 +1,29 @@
 "use client";
 
-import { Auth } from "aws-amplify";
+import { useEffect, useRef } from "react";
+import { signInWithRedirect } from "aws-amplify/auth";
 
 export default function ConnectionButton({ label }: { label: string }) {
-    const handleSignIn = () => {
-        Auth.federatedSignIn(); // Cognito Hosted UI
+  const linkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const element = linkRef.current;
+    if (!element) return;
+
+    const handleClick = (event: MouseEvent) => {
+      event.preventDefault();
+      signInWithRedirect();
     };
 
-    return (
-        <button
-            type="button"
-            onClick={handleSignIn}
-            className="head-link connection-btn"
-        >
-            <span className="nav-link">{label}</span>
-        </button>
-    );
+    element.addEventListener("click", handleClick);
+    return () => {
+      element.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  return (
+    <a ref={linkRef} href="#" className="head-link connection-btn">
+      <span className="nav-link">{label}</span>
+    </a>
+  );
 }
