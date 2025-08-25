@@ -11,7 +11,6 @@ import ScrollSectionsWrapper from "./ScrollSectionsWrapper";
 import Footer from "../src/components/footer/footer";
 import Loader from "@/src/components/loader/Loader";
 import MobileRedirect from "./MobileRedirect";
-import { AuthProvider } from "@/src/components/auth/AuthProvider";
 
 export const RobotoFlex = localFont({
     src: "/fonts/RobotoFlex.woff2",
@@ -146,26 +145,24 @@ export default function RootLayout({
                 className={`${RobotoFlex.variable} ${Montserrat.variable} ${Nunito.variable}`}
                 id="top"
             >
-                <AuthProvider>
-                    <MobileRedirect />
-                    <ScrollProvider>
-                        <ScrollSectionsWrapper>
-                            <SearchProvider>
-                                <DrivingProvider>
-                                    <Suspense fallback={<Loader />}>
-                                        <header>
-                                            <div className="content-wrapper">
-                                                <HeaderProps />
-                                            </div>
-                                        </header>
-                                        <main>{children}</main>
-                                        <Footer />
-                                    </Suspense>
-                                </DrivingProvider>
-                            </SearchProvider>
-                        </ScrollSectionsWrapper>
-                    </ScrollProvider>
-                </AuthProvider>
+                <MobileRedirect />
+                <ScrollProvider>
+                    <ScrollSectionsWrapper>
+                        <SearchProvider>
+                            <DrivingProvider>
+                                <Suspense fallback={<Loader />}>
+                                    <header>
+                                        <div className="content-wrapper">
+                                            <HeaderProps />
+                                        </div>
+                                    </header>
+                                    <main>{children}</main>
+                                    <Footer />
+                                </Suspense>
+                            </DrivingProvider>
+                        </SearchProvider>
+                    </ScrollSectionsWrapper>
+                </ScrollProvider>
             </body>
         </html>
     );
