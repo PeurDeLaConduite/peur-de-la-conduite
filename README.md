@@ -1,4 +1,31 @@
-# peur-de-la-conduite
+# 🖥️ desktop-peur-de-la-conduite
+
+Version desktop du site **peur-de-la-conduite.fr**.  
+Application optimisée SEO, rapide et accessible, développée avec **Next.js · React · TypeScript · AWS Amplify**.
+
+---
+
+## 🚀 Fonctionnalités
+- Interface desktop ergonomique et performante  
+- Optimisation SEO, accessibilité et temps de chargement  
+- Intégration avec **AWS Amplify** (AppSync, Cognito, S3)  
+- Réécriture et gestion des sous-domaines (desktop/mobile)  
+
+---
+
+## 👤 Auteur
+
+**Jerem16 — Jérémy Lemaignent**  
+Architecte Développeur & Designer web · Fondateur de **Wii-Design**  
+Spécialiste **Next.js · React · TypeScript · AWS Amplify**
+
+- 📧 [jeremy.lemaignent@gmail.com](mailto:jeremy.lemaignent@gmail.com)  
+- 🌐 [Portfolio](https://jeremy-lemaignent.com)  
+- 💻 [GitHub](https://github.com/Jerem16)  
+- 🔗 [LinkedIn](https://www.linkedin.com/in/jeremy-lemaignent)
+
+---
+Process :
 
 yarn run build
 
@@ -43,8 +70,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 Licence
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2025 — Ce projet est développé et maintenu par **Jérémy Lemaignent** (Jerem16).  
