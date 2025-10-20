@@ -44,7 +44,7 @@ export default function RootLayout({
             <head>
                 <link
                     rel="preload"
-                    href="https://assets.peur-de-la-conduite.fr/img/retroviseur.svg"
+                    href="/img/retroviseur.svg"
                     as="image"
                 />
                 <link
@@ -61,7 +61,7 @@ export default function RootLayout({
                 />
                 <link
                     rel="preload"
-                    href="https://assets.peur-de-la-conduite.fr/img/retroviseur.svg"
+                    href="/img/retroviseur.svg"
                     as="image"
                 />
                 <script
@@ -73,7 +73,7 @@ export default function RootLayout({
                             "@id": "https://www.peur-de-la-conduite.fr/",
                             name: "Peur de la conduite - Coaching Auto",
                             image: [
-                                "https://assets.peur-de-la-conduite.fr/img/about/avatar.webp",
+                                "/img/about/avatar.webp",
                             ],
                             url: "https://www.peur-de-la-conduite.fr/",
                             telephone: "+33 6 74 25 91 81",

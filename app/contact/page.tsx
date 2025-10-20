@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         images: [
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/about/avatar.webp",
+                    "/img/about/avatar.webp",
                 width: 225,
                 height: 225,
                 alt: "Mounir Bouakkaz - Coaching conduite au Havre",
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
         icon: [
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 type: "image/svg+xml",
             },
         ],
     },
     other: {
         "link:preload":
-            "https://assets.peur-de-la-conduite.fr/img/contact/bg-contact.svg",
+            "/img/contact/bg-contact.svg",
         as: "image",
         type: "image/svg+xml",
     },

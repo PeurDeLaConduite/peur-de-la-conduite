@@ -10,8 +10,7 @@ import React, {
 } from "react";
 import type { BlogData } from "@src/types/blog";
 
-const PUBLIC_DATA_URL =
-    "https://amplify-d2jefuxcjjakai-ma-publiquestoragebucketac0-tjlluvtci6g6.s3.eu-west-3.amazonaws.com/publique-storage/data.json";
+const PUBLIC_DATA_URL = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/data/data.json`;
 
 interface DataBlogContextProps {
     data: BlogData | null;

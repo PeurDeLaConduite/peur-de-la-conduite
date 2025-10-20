@@ -1,10 +1,10 @@
+// src/utils/blogData/fetchData.ts
+import { promises as fs } from "node:fs";
+import path from "node:path";
 import type { BlogData } from "@src/types/blog";
 
-const PUBLIC_DATA_URL =
-    "https://amplify-d2jefuxcjjakai-ma-publiquestoragebucketac0-tjlluvtci6g6.s3.eu-west-3.amazonaws.com/publique-storage/data.json";
-
 export async function fetchBlogData(): Promise<BlogData> {
-    const res = await fetch(PUBLIC_DATA_URL, { cache: "force-cache" }); // pour SSG
-    if (!res.ok) throw new Error(`Erreur fetch : ${res.status}`);
-    return res.json();
+    const file = path.join(process.cwd(), "public", "data", "data.json");
+    const json = await fs.readFile(file, "utf8");
+    return JSON.parse(json) as BlogData;
 }

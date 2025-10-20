@@ -28,7 +28,7 @@ const metadata: Metadata = {
         images: [
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/about/avatar.webp",
+                    "/img/about/avatar.webp",
                 width: 225,
                 height: 225,
                 alt: "Mounir Bouakkaz, Enseignant de la conduite",
@@ -46,84 +46,84 @@ const metadata: Metadata = {
         apple: [
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "152x152",
                 type: "image/png",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "180x180",
                 type: "image/png",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/apple-touch-icon.png",
+                    "/img/favicon/apple-touch-icon.png",
             },
         ],
         icon: [
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 type: "image/svg+xml",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/favicon-16x16.png",
+                    "/img/favicon/favicon-16x16.png",
                 sizes: "16x16",
                 type: "image/png",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/icons/favicon-32x32.png",
+                    "/img/favicon/icons/favicon-32x32.png",
                 sizes: "32x32",
                 type: "image/png",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-192x192.png",
+                    "/img/favicon/icons/android-chrome-192x192.png",
                 sizes: "192x192",
                 type: "image/png",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/icons/android-chrome-512x512.png",
+                    "/img/favicon/icons/android-chrome-512x512.png",
                 sizes: "512x512",
                 type: "image/png",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "48x48",
                 type: "image/svg+xml",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "64x64",
                 type: "image/svg+xml",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "270x270",
                 type: "image/svg+xml",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "310x310",
                 type: "image/svg+xml",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "152x152",
                 type: "image/svg+xml",
             },
             {
                 url:
-                    "https://assets.peur-de-la-conduite.fr/img/favicon/logo.svg",
+                    "/img/favicon/logo.svg",
                 sizes: "180x180",
                 type: "image/svg+xml",
             },
@@ -140,7 +140,7 @@ const metadata: Metadata = {
     },
     other: {
         "link:preload":
-            "https://assets.peur-de-la-conduite.fr/img/contact/bg-contact.svg",
+            "/img/contact/bg-contact.svg",
         as: "image",
         type: "image/svg+xml",
     },
