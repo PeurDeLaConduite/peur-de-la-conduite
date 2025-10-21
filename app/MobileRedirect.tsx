@@ -1,11 +1,17 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 export default function MobileRedirect() {
-    useEffect(() => {
+    const handleRedirect = useCallback(() => {
         if (window.innerWidth < 900) {
-            window.location.href = "https://mobile.peur-de-la-conduite.fr" + window.location.pathname + window.location.search;
+            const target = `https://mobile.peur-de-la-conduite.fr${window.location.pathname}${window.location.search}`;
+            window.location.href = target;
         }
     }, []);
+
+    useEffect(() => {
+        handleRedirect();
+    }, [handleRedirect]);
+
     return null;
 }
