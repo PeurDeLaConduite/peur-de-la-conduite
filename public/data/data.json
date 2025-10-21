@@ -15,38 +15,6 @@
             "createdAt": "2025-05-25T14:31:19.491Z",
             "updatedAt": "2025-06-25T11:08:28.958Z",
             "relatedPostIds": []
-        },
-        {
-            "id": "S2",
-            "slug": "",
-            "title": "",
-            "description": "",
-            "order": 2,
-            "postIds": [],
-            "seo": {
-                "title": "",
-                "description": "",
-                "image": ""
-            },
-            "createdAt": "2025-08-03T16:46:58.183Z",
-            "updatedAt": "2025-08-03T16:46:58.183Z",
-            "relatedPostIds": []
-        },
-        {
-            "id": "S3",
-            "slug": "",
-            "title": "",
-            "description": "",
-            "order": 3,
-            "postIds": [],
-            "seo": {
-                "title": "",
-                "description": "",
-                "image": ""
-            },
-            "createdAt": "2025-08-03T17:05:27.041Z",
-            "updatedAt": "2025-08-03T17:05:27.041Z",
-            "relatedPostIds": []
         }
     ],
     "posts": [
@@ -57,7 +25,7 @@
             "excerpt": "Mes techniques pour transformer un traumatisme lié à l’échec en un moteur  pour vaincre la peur de conduire, gagner en assurance et progresser au volant.",
             "content": "## Les cicatrices d’un échec qui freine\nUn échec en conduite peut laisser une marque profonde, nourrissant un sentiment d’impuissance. Ces cicatrices psychologiques déclenchent des réflexes de protection qui amplifient la peur de la conduite. Le stress ainsi accumulé s’immisce dans chaque geste au volant et génère inévitablement des erreurs.\n\n## Dévoiler les zones d’ombre techniques\nLes défis techniques, comme le maintien de la trajectoire ou le freinage progressif, deviennent rapidement intimidants sous l’effet du stress. Sans une maîtrise guidée, un virage peut se transformer en une situation difficile et biaiser votre concentration.\n\n## Se sentir en confiance avant de démarrer\nAvant même de prendre le volant, une gestion adaptée du stress (pré-examen) permet de poser des bases sereines. La conduite accompagnée et des exercices de concentration personnalisés vous aiderons à canaliser votre énergie et à aborder chaque manœuvre sans appréhension.\n\n## Stimuler votre progression par l’action\n1. Planifiez des **sessions régulières** de conduite accompagnée  \n2. Alternez entre **exercices techniques** et **simulations de stress**  \n3. Suivez votre évolution avec un **diagnostic personnalisé**  \n\n## Se projeter vers des routes sereines\nEn créant un plan de perfectionnement adapté, vous transformez chaque sortie en opportunité de victoire sur votre amaxophobie. Rapidement, vous constaterez des progrès tangibles et prendrez plaisir à redécouvrir la route sans crainte.",
             "authorId": "A1",
-            "sectionIds": ["", "S1"],
+            "sectionIds": ["S1"],
             "relatedPostIds": [],
             "videoUrl": "https://www.youtube.com/shorts/lqFs7kJK0Gg",
             "subtitleSource": "L'échec est souvent vécu comme un traumatisme. Il va générer des mécanismes de protection pour éviter que ça se reproduise. Ces mécanismes de protection vont générer forcément du stress. Yeah.Le doute va commencer à s'imisser dans toutes ces actions et va générer forcément des erreurs.",
