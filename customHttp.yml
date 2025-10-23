@@ -1,0 +1,27 @@
+# customHttp.yml
+customHeaders:
+    # Fonts WOFF2 — 1 an
+    - pattern: "/media/*.woff2"
+      headers:
+          - key: Cache-Control
+            value: "public, max-age=31536000, s-maxage=31536000, immutable"
+          - key: Access-Control-Allow-Origin
+            value: "*"
+
+    # Chunks/JS hashés — 1 an
+    - pattern: "/chunks/*"
+      headers:
+          - key: Cache-Control
+            value: "public, max-age=31536000, s-maxage=31536000, immutable"
+
+    # CSS global — 17 jours
+    - pattern: "/css/globals.css"
+      headers:
+          - key: Cache-Control
+            value: "public, max-age=1468800, s-maxage=1468800, stale-while-revalidate=86400"
+
+    # CSS mobileDefer — 1 heure
+    - pattern: "/css/desktopDefer.css"
+      headers:
+          - key: Cache-Control
+            value: "public, max-age=3600, s-maxage=3600, must-revalidate"
