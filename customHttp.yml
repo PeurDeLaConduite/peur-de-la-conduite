@@ -25,3 +25,18 @@ customHeaders:
       headers:
           - key: Cache-Control
             value: "public, max-age=3600, s-maxage=3600, must-revalidate"
+            
+    - pattern: "/*"
+        headers:
+          - key: Access-Control-Allow-Origin
+            value: "https://mobile.peur-de-la-conduite.fr"
+          - key: Access-Control-Allow-Credentials
+            value: "true"
+          - key: Access-Control-Allow-Methods
+            value: "GET,POST,OPTIONS"
+          - key: Access-Control-Allow-Headers
+            value: "Content-Type,Authorization"
+          - key: Access-Control-Max-Age
+            value: "600"
+          - key: Vary
+            value: "Origin"
